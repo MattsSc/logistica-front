@@ -8,6 +8,7 @@
           <div class="login__row">
             <mat-form-field class="full-width-input" >
               <input matInput placeholder="User" class="login__input name" formControlName="username" required>
+              <i class="material-icons md-24 md-light">person_outline</i>
               <mat-error *ngIf="isFieldInvalid('username')">
                 Please inform your user name
               </mat-error>
@@ -16,6 +17,7 @@
           <div class="login__row">
             <mat-form-field class="full-width-input">
               <input matInput type="password" class="login__input pass" placeholder="Password" formControlName="password" required>
+              <i class="material-icons md-24 md-light">vpn_key</i>
               <mat-error *ngIf="isFieldInvalid('username')">
                 Please inform your password
               </mat-error>
