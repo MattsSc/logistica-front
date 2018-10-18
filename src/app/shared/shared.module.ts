@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
+import {LoginFormComponent} from './components/login-form/login-form.component';
 import {Error404PageComponent} from './pages/error404-page/error404-page.component';
 import {HeroCardComponent} from './components/hero-card/hero-card.component';
 import {ScrollToFirstInvalidDirective} from './directives/scroll-to-first-invalid.directive';
@@ -32,6 +33,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
   declarations: [
     HomePageComponent,
     LoginPageComponent,
+    LoginFormComponent,
     Error404PageComponent,
     HeaderComponent,
     SearchBarComponent,
@@ -52,6 +54,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
     SearchBarComponent,
     FooterComponent,
     SpinnerComponent,
+    LoginFormComponent,
     HeroCardComponent,
     HeroLoadingComponent,
     ScrollToFirstInvalidDirective

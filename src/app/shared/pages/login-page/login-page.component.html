@@ -1,35 +1,6 @@
 <div class="content">
   <div class="demo">
-    <div class="login">
-      <div class="login__check"></div>
-      <p *ngIf="showError" class="msg-error">{{'loginError' | translate}}</p>
-      <div class="login__form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="login__row">
-            <mat-form-field class="full-width-input" >
-              <input matInput placeholder="{{'userInput' | translate}}" class="login__input name" formControlName="username" required>
-              <i class="material-icons md-24 md-light">person_outline</i>
-              <mat-error *ngIf="isFieldInvalid('username')">
-                {{'userInpuError' | translate}}
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="login__row">
-            <mat-form-field class="full-width-input">
-              <input matInput type="password" class="login__input pass" placeholder="{{'passInput' | translate}}" formControlName="password" required>
-              <i class="material-icons md-24 md-light">vpn_key</i>
-              <mat-error *ngIf="isFieldInvalid('username')">
-                {{'passInputError' | translate}}
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <button *ngIf="login" mat-raised-button color="primary" class="login__submit">{{'loginBtn' | translate}}</button>
-          <div class="login__submit" *ngIf="!login">
-            <mat-spinner [diameter]="40" class="login__submit" style="margin:10px auto;"></mat-spinner>
-          </div>
-          <p class="login__signup">{{'createAccMsg' | translate}} &nbsp;<a>{{'createAccBtn' | translate}}</a></p>
-        </form>
-      </div>
-    </div>
+    <app-login-form></app-login-form>
+    <p class="signup">{{'createAccMsg' | translate}} &nbsp;<a (click)="createAcc()">{{'createAccBtn' | translate}}</a></p>
   </div>
 </div>
