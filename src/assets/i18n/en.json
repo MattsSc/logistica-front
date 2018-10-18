@@ -1,4 +1,15 @@
 {
+  "loginError": "Invalid user and/or password",
+  "userInput": "User",
+  "userInpuError": "User is required",
+  "passInput": "Password",
+  "passInputError": "Password is required",
+  "loginBtn": "Login",
+  "createAccMsg": "Don't have an account?",
+  "createAccBtn": "Sign up!",
+
+
+
   "alert": "Alert",
   "anchorToHero": "Anchor the hero",
   "logisticaRavo": "Ravo Logistic",

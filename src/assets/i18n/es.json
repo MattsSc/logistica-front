@@ -1,4 +1,16 @@
 {
+  "loginError": "Usuario y/o contraseña invalida",
+  "userInput": "Usuario",
+  "userInpuError": "Usuario es requerido",
+  "passInput": "Contraseña",
+  "passInputError": "Contraseña es requerida",
+  "loginBtn": "Aceptar",
+  "createAccMsg": "¿No tienes una cuenta?",
+  "createAccBtn": "Registrate",
+
+
+
+
   "alert": "Alerta",
   "anchorToHero": "Ancla al heroe",
   "logisticaRavo": "Logistica Ravo",
