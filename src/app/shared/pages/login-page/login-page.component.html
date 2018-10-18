@@ -1,26 +1,33 @@
 <div class="content">
-  <div class="login-title">
-    <h1>Login</h1><span>Logistica Ravo</span>
+  <div class="demo">
+    <div class="login">
+      <div class="login__check"></div>
+      <p *ngIf="showError" class="msg-error"> Usuario y/o contraseña invalido.</p>
+      <div class="login__form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="login__row">
+            <mat-form-field class="full-width-input" >
+              <input matInput placeholder="User" class="login__input name" formControlName="username" required>
+              <mat-error *ngIf="isFieldInvalid('username')">
+                Please inform your user name
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="login__row">
+            <mat-form-field class="full-width-input">
+              <input matInput type="password" class="login__input pass" placeholder="Password" formControlName="password" required>
+              <mat-error *ngIf="isFieldInvalid('username')">
+                Please inform your password
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button *ngIf="login" mat-raised-button color="primary" class="login__submit">Login</button>
+          <div class="login__submit" *ngIf="!login">
+            <mat-spinner [diameter]="40" class="login__submit" style="margin:10px auto;"></mat-spinner>
+          </div>
+          <p class="login__signup">Don't have an account? &nbsp;<a>Sign up</a></p>
+        </form>
+      </div>
+    </div>
   </div>
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p *ngIf="showError" class="msg-error"> Usuario y/o contraseña invalido.</p>
-        <mat-form-field class="full-width-input">
-          <input matInput placeholder="User" formControlName="username" required>
-          <mat-error *ngIf="isFieldInvalid('username')">
-            Please inform your user name
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('username')">
-            Please inform your password
-          </mat-error>
-        </mat-form-field>
-        <button *ngIf="login" mat-raised-button color="primary">Login</button>
-        <mat-spinner *ngIf="!login" [diameter]="40" style="margin:0 auto;"></mat-spinner>
-      </form>
-    </mat-card-content>
-  </mat-card>
 </div>
