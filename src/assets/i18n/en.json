@@ -7,7 +7,15 @@
   "loginBtn": "Login",
   "createAccMsg": "Don't have an account?",
   "createAccBtn": "Sign up!",
-
+  "emailInput": "E-mail",
+  "emailInputError": "E-mail is required",
+  "dniInput": "D.N.I.",
+  "dniInputError": "D.N.I. is required",
+  "dirrInput": "Address",
+  "dirrInputError": "Address is required",
+  "localidadInput": "City",
+  "localidadInputError": "City is required",
+  "createAccFormBtn": "Create account",
 
 
   "alert": "Alert",

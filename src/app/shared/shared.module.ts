@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
+import {CreateAccFormComponent} from './components/create-acc-form/create-acc-form.component';
 import {Error404PageComponent} from './pages/error404-page/error404-page.component';
 import {HeroCardComponent} from './components/hero-card/hero-card.component';
 import {ScrollToFirstInvalidDirective} from './directives/scroll-to-first-invalid.directive';
@@ -34,6 +35,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
     HomePageComponent,
     LoginPageComponent,
     LoginFormComponent,
+    CreateAccFormComponent,
     Error404PageComponent,
     HeaderComponent,
     SearchBarComponent,
@@ -55,6 +57,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
     FooterComponent,
     SpinnerComponent,
     LoginFormComponent,
+    CreateAccFormComponent,
     HeroCardComponent,
     HeroLoadingComponent,
     ScrollToFirstInvalidDirective

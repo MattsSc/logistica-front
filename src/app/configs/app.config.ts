@@ -10,6 +10,7 @@ export const AppConfig: any = {
   endpoints: {
     heroes: 'https://nodejs-example-app.herokuapp.com/heroes',
     login: 'https://logistica-uade-app.herokuapp.com/logistica/user/login',
+    user: 'https://logistica-uade-app.herokuapp.com/logistica/user/'
   },
   votesLimit: 3,
   topHeroesLimit: 4,

@@ -1,12 +1,21 @@
 {
   "loginError": "Usuario y/o contraseña invalida",
   "userInput": "Usuario",
-  "userInpuError": "Usuario es requerido",
+  "userInputError": "Usuario es requerido",
   "passInput": "Contraseña",
   "passInputError": "Contraseña es requerida",
   "loginBtn": "Aceptar",
   "createAccMsg": "¿No tienes una cuenta?",
   "createAccBtn": "Registrate",
+  "emailInput": "E-mail",
+  "emailInputError": "E-mail es requerido",
+  "dniInput": "D.N.I.",
+  "dniInputError": "D.N.I. es requerido",
+  "dirrInput": "Dirección",
+  "dirrInputError": "Dirección es requerido",
+  "localidadInput": "Localidad",
+  "localidadInputError": "Localidad es requerido",
+  "createAccFormBtn": "Crear cuenta",
 
 
 

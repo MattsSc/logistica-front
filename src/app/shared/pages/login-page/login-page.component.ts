@@ -11,21 +11,16 @@ import {AuthService} from '../../../core/services/auth/auth.service';
 })
 
 export class LoginPageComponent implements OnInit {
-  login: boolean;
-  showError: boolean;
-  private formSubmitAttempt: boolean;
+  createAccToggle: boolean;
 
-  constructor(
-    private authService: AuthService
-  ) {
-    this.login = true;
-    this.showError = false;
+  constructor() {
+    this.createAccToggle = false;
   }
 
   ngOnInit() {
   }
 
-  createAcc(){
-
+  createAcc() {
+    this.createAccToggle = !this.createAccToggle;
   }
 }

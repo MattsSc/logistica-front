@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { User } from '../../models/User';
 import {AppConfig} from '../../../configs/app.config';
 import {LoggerService} from '../logger.service';
@@ -12,20 +12,16 @@ const httpOptions = {
 };
 
 @Injectable()
-export class AuthService {
-
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
+export class UserService {
 
   constructor(
     private router: Router,
     private http: HttpClient
   ) {
-    this.loginUrl = AppConfig.endpoints.login;
+    this.userUrl = AppConfig.endpoints.user;
   }
-  private loggedIn = new BehaviorSubject<boolean>(false);
-  private loginUrl: string ;
+
+  private userUrl: string ;
 
   private static handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -40,19 +36,13 @@ export class AuthService {
     };
   }
 
-  login(user: User): Observable<any> {
+  createUser(user: User): Observable<any> {
     if (user.email !== '' && user.password !== '' ) {
-      return this.http.post<any>(this.loginUrl, user, httpOptions)
+      return this.http.post<any>(this.userUrl, user, httpOptions)
         .pipe(
           tap(() => {
-            this.loggedIn.next(true);
             this.router.navigate(['/']); })
         );
     }
-  }
-
-  logout() {                            // {4}
-    this.loggedIn.next(false);
-    this.router.navigate(['/login']);
   }
 }

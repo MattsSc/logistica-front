@@ -1,0 +1,51 @@
+<div class="create-acc">
+  <p *ngIf="showError" class="msg-error">{{'loginError' | translate}}</p>
+  <div class="create-acc__form"  [@fadeInOut]>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input" >
+          <input matInput type="email" placeholder="{{'emailInput' | translate}}" class="create-acc__input" formControlName="email" required>
+          <mat-error *ngIf="isFieldInvalid('email')">
+            {{'emailInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input" >
+          <input matInput placeholder="{{'dniInput' | translate}}" class="create-acc__input" formControlName="dni" required>
+          <mat-error *ngIf="isFieldInvalid('dni')">
+            {{'dniInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input" >
+          <input matInput placeholder="{{'dirrInput' | translate}}" class="create-acc__input" formControlName="direccion" required>
+          <mat-error *ngIf="isFieldInvalid('direccion')">
+            {{'dirrInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input" >
+          <input matInput placeholder="{{'localidadInput' | translate}}" class="create-acc__input" formControlName="localidad" required>
+          <mat-error *ngIf="isFieldInvalid('localidad')">
+            {{'localidadInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" class="create-acc__input" placeholder="{{'passInput' | translate}}" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('password')">
+            {{'passInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button *ngIf="!submitted" mat-raised-button color="primary" class="create-acc__submit">{{'createAccFormBtn' | translate}}</button>
+      <div *ngIf="submitted" class="create-acc__submit">
+        <mat-spinner [diameter]="40" class="create-acc__submit" style="margin:10px auto;"></mat-spinner>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 <div class="content">
   <div class="demo">
-    <app-login-form></app-login-form>
+    <app-login-form *ngIf="createAccToggle"></app-login-form>
+    <app-create-acc-form *ngIf="!createAccToggle"></app-create-acc-form>
     <p class="signup">{{'createAccMsg' | translate}} &nbsp;<a (click)="createAcc()">{{'createAccBtn' | translate}}</a></p>
   </div>
+
 </div>

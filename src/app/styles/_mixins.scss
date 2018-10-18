@@ -37,3 +37,8 @@
     line-height: $lh;
   }
 }
+
+@mixin transform($size, $time){
+  -webkit-transform: scale($size);
+  -webkit-animation-delay: $time;
+}

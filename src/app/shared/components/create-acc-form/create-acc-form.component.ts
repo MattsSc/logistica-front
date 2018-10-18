@@ -2,32 +2,35 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
-import {AuthService} from '../../../core/services/auth/auth.service';
+import {UserService} from '../../../core/services/user/user.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  selector: 'app-create-acc-form',
+  templateUrl: './create-acc-form.component.html',
+  styleUrls: ['./create-acc-form.component.scss'],
   animations: [fadeInOut]
 })
 
-export class LoginFormComponent implements OnInit {
+export class CreateAccFormComponent implements OnInit {
   form: FormGroup;
-  login: boolean;
   showError: boolean;
+  submitted: boolean;
   private formSubmitAttempt: boolean;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private userService: UserService
   ) {
-    this.login = true;
     this.showError = false;
+    this.submitted = false;
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
+    this.form = this.fb.group({     // {5}
       email: ['', [Validators.required, Validators.email]],
+      dni: ['', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')]],
+      direccion: ['', Validators.required],
+      localidad: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -41,17 +44,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.showError = false;
+    this.submitted = true;
     if (this.form.valid) {
-      this.login = false;
-      const result = this.authService.login(this.form.value).subscribe(
-        data => {
-          this.login = false;
-        },
-        error => {
-          this.login = !this.login;
-          this.showError = true;
-        }
-      );
+      console.log(JSON.stringify(this.form.value));
+      this.userService.createUser(this.form.value);
     }
     this.formSubmitAttempt = true;
   }

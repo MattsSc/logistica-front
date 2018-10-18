@@ -1,14 +1,14 @@
 <div class="login">
   <div class="login__check"></div>
   <p *ngIf="showError" class="msg-error">{{'loginError' | translate}}</p>
-  <div class="login__form">
+  <div class="login__form" [@fadeInOut]>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="login__row">
         <mat-form-field class="full-width-input" >
-          <input matInput placeholder="{{'userInput' | translate}}" class="login__input name" formControlName="username" required>
+          <input matInput type="email" placeholder="{{'emailInput' | translate}}" class="login__input" formControlName="email" required>
           <i class="material-icons md-24 md-light">person_outline</i>
-          <mat-error *ngIf="isFieldInvalid('username')">
-            {{'userInpuError' | translate}}
+          <mat-error *ngIf="isFieldInvalid('email')">
+            {{'emailInpuError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
