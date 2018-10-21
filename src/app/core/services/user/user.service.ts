@@ -41,7 +41,8 @@ export class UserService {
       return this.http.post<any>(this.userUrl, user, httpOptions)
         .pipe(
           tap(() => {
-            this.router.navigate(['/']); })
+            console.log('Cuenta creada');
+          })
         );
     }
   }

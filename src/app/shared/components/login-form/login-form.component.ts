@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
 import {AuthService} from '../../../core/services/auth/auth.service';
 

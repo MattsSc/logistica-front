@@ -23,4 +23,10 @@ export class LoginPageComponent implements OnInit {
   createAcc() {
     this.createAccToggle = !this.createAccToggle;
   }
+
+  userCreated(value: boolean) {
+    if (value === true) {
+      this.createAcc();
+    }
+  }
 }

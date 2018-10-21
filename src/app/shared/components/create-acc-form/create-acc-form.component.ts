@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
 import {UserService} from '../../../core/services/user/user.service';
 
@@ -15,6 +14,7 @@ export class CreateAccFormComponent implements OnInit {
   form: FormGroup;
   showError: boolean;
   submitted: boolean;
+  @Output() created: EventEmitter<boolean> = new EventEmitter<boolean>();
   private formSubmitAttempt: boolean;
 
   constructor(
@@ -26,7 +26,7 @@ export class CreateAccFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({     // {5}
+    this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       dni: ['', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')]],
       direccion: ['', Validators.required],
@@ -46,8 +46,17 @@ export class CreateAccFormComponent implements OnInit {
     this.showError = false;
     this.submitted = true;
     if (this.form.valid) {
-      console.log(JSON.stringify(this.form.value));
-      this.userService.createUser(this.form.value);
+      this.userService.createUser(this.form.value).subscribe(
+        data => {
+          this.submitted = false;
+          this.created.emit(true);
+        },
+        error => {
+          this.submitted = !this.submitted;
+          this.showError = true;
+          this.created.emit(false);
+        }
+      );
     }
     this.formSubmitAttempt = true;
   }

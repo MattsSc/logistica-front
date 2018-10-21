@@ -16,7 +16,7 @@
         <mat-form-field class="full-width-input">
           <input matInput type="password" class="login__input pass" placeholder="{{'passInput' | translate}}" formControlName="password" required>
           <i class="material-icons md-24 md-light">vpn_key</i>
-          <mat-error *ngIf="isFieldInvalid('username')">
+          <mat-error *ngIf="isFieldInvalid('password')">
             {{'passInputError' | translate}}
           </mat-error>
         </mat-form-field>

@@ -1,5 +1,5 @@
 <div class="create-acc">
-  <p *ngIf="showError" class="msg-error">{{'loginError' | translate}}</p>
+  <p *ngIf="showError" class="msg-error">{{'createAccError' | translate}}</p>
   <div class="create-acc__form"  [@fadeInOut]>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="create-acc__row">

@@ -11,6 +11,7 @@ import {SharedModule} from './shared/shared.module';
 import {NgxExampleLibraryModule} from '@ismaestro/ngx-example-library';
 import {AuthService} from './core/services/auth/auth.service';
 import {AuthGuard} from './core/services/auth/auth.guard';
+import {UserService} from './core/services/user/user.service';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import {AuthGuard} from './core/services/auth/auth.guard';
     AppComponent
   ],
   providers: [
-    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, AuthGuard
+    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })
