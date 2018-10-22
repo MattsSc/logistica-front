@@ -1,4 +1,7 @@
 <div class="content">
+
+  <p *ngIf="createdAcc" class="msg-error">{{'createAccSuccess' | translate}}</p>
+
   <div class="demo" *ngIf="!createAccToggle; else createAccBlock">
     <app-login-form></app-login-form>
     <p class="signup">{{'createAccMsg' | translate}} &nbsp;<a (click)="createAcc()">{{'createAccBtn' | translate}}</a></p>
