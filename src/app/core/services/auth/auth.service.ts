@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
@@ -6,13 +6,14 @@ import { User } from '../../models/User';
 import {AppConfig} from '../../../configs/app.config';
 import {LoggerService} from '../logger.service';
 import {tap} from 'rxjs/operators';
+import {CookieService} from 'ngx-cookie-service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
-export class AuthService {
+export class AuthService{
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -20,12 +21,16 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private cookieService: CookieService
   ) {
     this.loginUrl = AppConfig.endpoints.login;
+    this.existCookieSession();
   }
+
+
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private loginUrl: string ;
+  private loginUrl: string;
 
   private static handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -40,19 +45,31 @@ export class AuthService {
     };
   }
 
+  private existCookieSession(): void {
+    if (this.cookieService.get('ravo_login')) {
+      this.loggedIn.next(true);
+      this.router.navigate(['/']);
+    }
+  }
+
   login(user: User): Observable<any> {
-    if (user.email !== '' && user.password !== '' ) {
+    if (user.email !== '' && user.password !== '') {
       return this.http.post<any>(this.loginUrl, user, httpOptions)
         .pipe(
-          tap(() => {
+          tap((res) => {
+            console.log('Log ' + res);
             this.loggedIn.next(true);
-            this.router.navigate(['/']); })
+            this.cookieService.set('ravo_login', 'true');
+            this.router.navigate(['/']);
+          })
         );
     }
   }
 
-  logout() {                            // {4}
+  logout() {
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
+    this.cookieService.delete('ravo_login');
   }
 }
+

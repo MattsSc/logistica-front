@@ -12,6 +12,7 @@ import {NgxExampleLibraryModule} from '@ismaestro/ngx-example-library';
 import {AuthService} from './core/services/auth/auth.service';
 import {AuthGuard} from './core/services/auth/auth.guard';
 import {UserService} from './core/services/user/user.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import {UserService} from './core/services/user/user.service';
     AppComponent
   ],
   providers: [
-    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, AuthGuard
+    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, AuthGuard, CookieService
   ],
   bootstrap: [AppComponent]
 })

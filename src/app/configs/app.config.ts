@@ -8,9 +8,10 @@ export const AppConfig: any = {
     error404: '404'
   },
   endpoints: {
-    heroes: 'http://nodejs-example-app.herokuapp.com/heroes',
-    login: 'http://logistica-uade-app.herokuapp.com/logistica/user/login',
-    user: 'http://logistica-uade-app.herokuapp.com/logistica/user/'
+    heroes: 'https://nodejs-example-app.herokuapp.com/heroes',
+    login: 'https://logistica-uade-app.herokuapp.com/logistica/user/login',
+    user: 'https://logistica-uade-app.herokuapp.com/logistica/user/',
+    orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/'
   },
   votesLimit: 3,
   topHeroesLimit: 4,

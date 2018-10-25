@@ -19,6 +19,7 @@ import {ScrollToFirstInvalidDirective} from './directives/scroll-to-first-invali
 import {NgxExampleLibraryModule} from '@ismaestro/ngx-example-library';
 import {WebStorageModule} from 'ngx-store';
 import { HeroLoadingComponent } from './components/hero-loading/hero-loading.component';
+import {OrdersTableComponent} from './components/orders-table/orders-table.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
     LoginPageComponent,
     LoginFormComponent,
     CreateAccFormComponent,
+    OrdersTableComponent,
     Error404PageComponent,
     HeaderComponent,
     SearchBarComponent,
@@ -58,6 +60,7 @@ import { HeroLoadingComponent } from './components/hero-loading/hero-loading.com
     SpinnerComponent,
     LoginFormComponent,
     CreateAccFormComponent,
+    OrdersTableComponent,
     HeroCardComponent,
     HeroLoadingComponent,
     ScrollToFirstInvalidDirective
