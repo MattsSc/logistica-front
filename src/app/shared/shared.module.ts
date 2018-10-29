@@ -4,7 +4,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CommonModule} from '@angular/common';
 import {SpinnerComponent} from './components/spinner/spinner.component';
-import {FooterComponent} from './components/footer/footer.component';
 import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {HeaderComponent} from './components/header/header.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -20,6 +19,7 @@ import {NgxExampleLibraryModule} from '@ismaestro/ngx-example-library';
 import {WebStorageModule} from 'ngx-store';
 import { HeroLoadingComponent } from './components/hero-loading/hero-loading.component';
 import {OrdersTableComponent} from './components/orders-table/orders-table.component';
+import {AddOrderFormComponent} from './components/add-order-form/add-order-form.component';
 
 @NgModule({
   imports: [
@@ -36,12 +36,12 @@ import {OrdersTableComponent} from './components/orders-table/orders-table.compo
     HomePageComponent,
     LoginPageComponent,
     LoginFormComponent,
+    AddOrderFormComponent,
     CreateAccFormComponent,
     OrdersTableComponent,
     Error404PageComponent,
     HeaderComponent,
     SearchBarComponent,
-    FooterComponent,
     SpinnerComponent,
     HeroCardComponent,
     HeroLoadingComponent,
@@ -56,9 +56,9 @@ import {OrdersTableComponent} from './components/orders-table/orders-table.compo
     WebStorageModule,
     HeaderComponent,
     SearchBarComponent,
-    FooterComponent,
     SpinnerComponent,
     LoginFormComponent,
+    AddOrderFormComponent,
     CreateAccFormComponent,
     OrdersTableComponent,
     HeroCardComponent,

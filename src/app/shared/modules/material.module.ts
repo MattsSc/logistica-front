@@ -13,9 +13,13 @@ import {
   MatSliderModule,
   MatSnackBarModule,
   MatTooltipModule,
-  MatTableModule
+  MatTableModule,
+  MatExpansionModule,
+  MatPaginatorModule,
+  MatChipsModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -33,7 +37,11 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    FormsModule
   ],
   exports: [
     MatButtonModule,
@@ -50,7 +58,11 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    FormsModule
   ],
 })
 

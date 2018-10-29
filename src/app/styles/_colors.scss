@@ -1,10 +1,22 @@
 // Descriptive Colors
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
 $white: #ffffff;
 $pink: #881cb5;
 $red: #dc143c;
 $grey: #bbbbbb;
 $light-grey: #eeeeee;
+$gray-material: #424242;
 
 // Functional Colors
-$primary--color: $white;
+$primary--color:  mat-color($mat-pink, A400);
 $secondary--color: $white;
+
+$candy-app-theme:   mat-light-theme($primary--color, $secondary--color)

@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Agregar Orden</h1>
+<div mat-dialog-content>
+  <p>Quien y donde lo recibe</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="text" placeholder="{{'order-form.name' | translate}}" class="login__input" formControlName="nombre" required>
+        <mat-error *ngIf="isFieldInvalid('nombre')">
+          {{'emailInpuError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="text" placeholder="{{'order-form.address' | translate}}" class="login__input" formControlName="domicilio" required>
+        <mat-error *ngIf="isFieldInvalid('domicilio')">
+          {{'emailInpuError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="text" placeholder="{{'order-form.city' | translate}}" class="login__input" formControlName="localidad" required>
+        <mat-error *ngIf="isFieldInvalid('localidad')">
+          {{'emailInpuError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="email" placeholder="{{'order-form.email' | translate}}" class="login__input" formControlName="email" required>
+        <mat-error *ngIf="isFieldInvalid('email')">
+          {{'emailInpuError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="number" placeholder="{{'order-form.weight' | translate}}" class="login__input" formControlName="peso" required>
+        <mat-error *ngIf="isFieldInvalid('peso')">
+          {{'emailInpuError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial>Agregar</button>
+</div>

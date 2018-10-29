@@ -1,4 +1,5 @@
 {
+  "companyName": "Ravo",
   "loginError": "Usuario y/o contraseña invalida",
   "userInput": "Usuario",
   "userInputError": "Usuario es requerido",
@@ -19,6 +20,32 @@
   "localidadInput": "Localidad",
   "localidadInputError": "Localidad es requerido",
   "createAccFormBtn": "Crear cuenta",
+  "ordenesTitle": "Tus ordenes",
+  "addOrderBtn": "Agregar orden",
+  "order-form":{
+    "name": "Nombre",
+    "address": "Domicilio",
+    "city": "Localidad/Ciudad",
+    "email": "Email",
+    "weight": "Peso (Kg.)"
+  },
+  "order":{
+    "new": "Nuevo",
+    "onWay": "En camino",
+    "delivered": "Entregado",
+    "completed": "Completado"
+  },
+  "orders-table":{
+    "orderId":"Orden Id",
+    "status": "Estado",
+    "receiver": "Destinatario",
+    "deliveredDate": "Fecha de entrega",
+    "receivedDate": "Fecha  recibida"
+  },
+  "user-menu":{
+    "information": "Mis datos",
+    "logout": "Cerrar sesion"
+  },
 
 
 

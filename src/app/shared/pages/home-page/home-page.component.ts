@@ -3,6 +3,8 @@ import {Hero} from '../../../modules/heroes/shared/hero.model';
 import {HeroService} from '../../../modules/heroes/shared/hero.service';
 import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
+import {AddOrderFormComponent} from '../../components/add-order-form/add-order-form.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-home-page',
@@ -12,16 +14,25 @@ import {fadeInOut} from '../../helpers/utils.helper';
 })
 
 export class HomePageComponent implements OnInit {
-  heroes: Hero[] = null;
 
-  constructor(private heroService: HeroService) {
+  animal: string;
+  name: string;
+
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.heroService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes.sort((a, b) => {
-        return b.likes - a.likes;
-      }).slice(0, AppConfig.topHeroesLimit);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddOrderFormComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
     });
   }
 }
