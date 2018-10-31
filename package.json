@@ -3,7 +3,8 @@
   "version": "6.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "ng serve --open",
+    "test": "ng serve --open",
+    "start": "node server.js",
     "http-server": "http-server dist/ -c-1",
     "build": "ng build",
     "build:library": "ng build ngx-example-library",
