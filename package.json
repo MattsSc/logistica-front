@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "run-local": "ng serve --open",
-    "start": " npm run build && node server.js",
+    "start": " node server.js",
     "http-server": "http-server dist/ -c-1",
     "build": "ng build",
     "build:library": "ng build ngx-example-library",
