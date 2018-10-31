@@ -5,19 +5,19 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="login__row">
         <mat-form-field class="full-width-input" >
-          <input matInput type="email" placeholder="{{'emailInput' | translate}}" class="login__input" formControlName="email" required>
+          <input matInput type="email" placeholder="{{'form.emailInput' | translate}}" class="login__input" formControlName="email" required>
           <i class="material-icons md-24 md-light">person_outline</i>
           <mat-error *ngIf="isFieldInvalid('email')">
-            {{'emailInpuError' | translate}}
+            {{'form-error.emailInpuError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="login__row">
         <mat-form-field class="full-width-input">
-          <input matInput type="password" class="login__input pass" placeholder="{{'passInput' | translate}}" formControlName="password" required>
+          <input matInput type="password" class="login__input pass" placeholder="{{'form.passInput' | translate}}" formControlName="password" required>
           <i class="material-icons md-24 md-light">vpn_key</i>
           <mat-error *ngIf="isFieldInvalid('password')">
-            {{'passInputError' | translate}}
+            {{'form-error.passInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>

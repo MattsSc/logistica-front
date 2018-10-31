@@ -4,6 +4,7 @@ export class User {
   public direccion: string;
   public localidad: string;
   public password: string;
+  public id: string;
 
   constructor(username: string, dni: number, direccion: string, localidad: string, password: string){}
 }

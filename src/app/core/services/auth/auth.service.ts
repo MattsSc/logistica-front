@@ -13,7 +13,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class AuthService{
+export class AuthService {
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -59,7 +59,7 @@ export class AuthService{
           tap((res) => {
             console.log('Log ' + res);
             this.loggedIn.next(true);
-            this.cookieService.set('ravo_login', 'true');
+            this.cookieService.set('ravo_login', res);
             this.router.navigate(['/']);
           })
         );
@@ -71,5 +71,10 @@ export class AuthService{
     this.router.navigate(['/login']);
     this.cookieService.delete('ravo_login');
   }
+
+  getToken() {
+    return this.cookieService.get('ravo_login');
+  }
+
 }
 

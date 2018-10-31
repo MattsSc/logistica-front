@@ -4,41 +4,49 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="create-acc__row">
         <mat-form-field class="full-width-input" >
-          <input matInput type="email" placeholder="{{'emailInput' | translate}}" class="create-acc__input" formControlName="email" required>
+          <input matInput type="email" placeholder="{{'form.emailInput' | translate}}" class="create-acc__input" formControlName="email" required>
           <mat-error *ngIf="isFieldInvalid('email')">
-            {{'emailInputError' | translate}}
+            {{'form-error.emailInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="create-acc__row">
         <mat-form-field class="full-width-input" >
-          <input matInput placeholder="{{'dniInput' | translate}}" class="create-acc__input" formControlName="dni" required>
+          <input matInput placeholder="{{'form.nameInput' | translate}}" class="create-acc__input" formControlName="nombre" required>
+          <mat-error *ngIf="isFieldInvalid('nombre')">
+            {{'form-error.nameInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create-acc__row">
+        <mat-form-field class="full-width-input" >
+          <input matInput placeholder="{{'form.dniInput' | translate}}" class="create-acc__input" formControlName="dni" required>
           <mat-error *ngIf="isFieldInvalid('dni')">
-            {{'dniInputError' | translate}}
+            {{'form-error.dniInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="create-acc__row">
         <mat-form-field class="full-width-input" >
-          <input matInput placeholder="{{'dirrInput' | translate}}" class="create-acc__input" formControlName="direccion" required>
+          <input matInput placeholder="{{'form.addressInput' | translate}}" class="create-acc__input" formControlName="direccion" required>
           <mat-error *ngIf="isFieldInvalid('direccion')">
-            {{'dirrInputError' | translate}}
+            {{'form-error.addressInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="create-acc__row">
         <mat-form-field class="full-width-input" >
-          <input matInput placeholder="{{'localidadInput' | translate}}" class="create-acc__input" formControlName="localidad" required>
+          <input matInput placeholder="{{'form.cityInput' | translate}}" class="create-acc__input" formControlName="localidad" required>
           <mat-error *ngIf="isFieldInvalid('localidad')">
-            {{'localidadInputError' | translate}}
+            {{'form-error.cityInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>
       <div class="create-acc__row">
         <mat-form-field class="full-width-input">
-          <input matInput type="password" class="create-acc__input" placeholder="{{'passInput' | translate}}" formControlName="password" required>
+          <input matInput type="password" class="create-acc__input" placeholder="{{'form.passInput' | translate}}" formControlName="password" required>
           <mat-error *ngIf="isFieldInvalid('password')">
-            {{'passInputError' | translate}}
+            {{'form-error.passInputError' | translate}}
           </mat-error>
         </mat-form-field>
       </div>

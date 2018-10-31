@@ -28,6 +28,7 @@ export class CreateAccFormComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
+      nombre: ['', Validators.required],
       dni: ['', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')]],
       direccion: ['', Validators.required],
       localidad: ['', Validators.required],

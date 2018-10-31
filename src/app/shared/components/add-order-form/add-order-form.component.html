@@ -1,50 +1,42 @@
 <h1 mat-dialog-title>Agregar Orden</h1>
 <div mat-dialog-content>
   <p>Quien y donde lo recibe</p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form #orderForm="ngForm" (ngSubmit)="onSubmit()" >
     <div>
       <mat-form-field class="full-width-input" >
-        <input matInput type="text" placeholder="{{'order-form.name' | translate}}" class="login__input" formControlName="nombre" required>
-        <mat-error *ngIf="isFieldInvalid('nombre')">
-          {{'emailInpuError' | translate}}
+        <input matInput type="text" placeholder="{{'form.nameInput' | translate}}" class="login__input" id="nombre" required [(ngModel)]="orden.cliente.nombre" name="nombre"  #nombre="ngModel">
+        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+          {{'form-error.nameInputError' | translate}}
         </mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width-input" >
-        <input matInput type="text" placeholder="{{'order-form.address' | translate}}" class="login__input" formControlName="domicilio" required>
-        <mat-error *ngIf="isFieldInvalid('domicilio')">
-          {{'emailInpuError' | translate}}
+        <input matInput type="text" placeholder="{{'form.addressInput' | translate}}" class="login__input" id="domicilio" required  [(ngModel)]="orden.cliente.direccion" name="domicilio" #domicilio="ngModel">
+        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+          {{'form-error.addressInputError' | translate}}
         </mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width-input" >
-        <input matInput type="text" placeholder="{{'order-form.city' | translate}}" class="login__input" formControlName="localidad" required>
-        <mat-error *ngIf="isFieldInvalid('localidad')">
-          {{'emailInpuError' | translate}}
+        <input matInput type="email" placeholder="{{'form.emailInput' | translate}}" class="login__input" id="email" required  [(ngModel)]="orden.cliente.email" name="email" #email="ngModel">
+        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+          {{'form-error.emailInputError' | translate}}
         </mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width-input" >
-        <input matInput type="email" placeholder="{{'order-form.email' | translate}}" class="login__input" formControlName="email" required>
-        <mat-error *ngIf="isFieldInvalid('email')">
-          {{'emailInpuError' | translate}}
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field class="full-width-input" >
-        <input matInput type="number" placeholder="{{'order-form.weight' | translate}}" class="login__input" formControlName="peso" required>
-        <mat-error *ngIf="isFieldInvalid('peso')">
-          {{'emailInpuError' | translate}}
+        <input matInput type="number" placeholder="{{'form.weightInput' | translate}}" class="login__input" id="peso" required [(ngModel)]="orden.peso_total" name="peso" #peso="ngModel">
+        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+          {{'form-error.weightInputError' | translate}}
         </mat-error>
       </mat-form-field>
     </div>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="onSubmit()" cdkFocusInitial>Agregar</button>
+  <button mat-button (click)="onNoClick()">{{ 'cancelBtn' | translate }}</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial [disabled]="!orderForm.form.valid">{{'addBtn' | translate }}</button>
 </div>

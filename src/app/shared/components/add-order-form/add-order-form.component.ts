@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {fadeInOut} from '../../helpers/utils.helper';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../core/services/user/user.service';
+import {Order} from '../../../core/models/Order';
 
 export interface DialogData {
   animal: string;
@@ -16,46 +18,46 @@ export interface DialogData {
 })
 
 export class AddOrderFormComponent implements OnInit {
-  form: FormGroup;
   login: boolean;
   showError: boolean;
-  private formSubmitAttempt: boolean;
+  orden: Order;
+  formSubmitAttempt: boolean;
+  @Input() ordenModel: Order;
 
 
   constructor(
     public dialogRef: MatDialogRef<AddOrderFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private fb: FormBuilder) {}
+    private fb: FormBuilder,
+    private userService: UserService) {}
 
   ngOnInit() {
-    this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      domicilio: ['', Validators.required],
-      localidad: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      peso: ['', Validators.required]
-    });
+    // @ts-ignore
+    this.orden = this.ordenModel || new Order();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  isFieldInvalid(field: string) { // {6}
-    return (
-      (!this.form.get(field).valid && this.form.get(field).touched) ||
-      (this.form.get(field).untouched && this.formSubmitAttempt)
-    );
-  }
-
   onSubmit() {
     this.showError = false;
-    if (this.form.valid) {
-      console.log("Aleluya");
-    }
-    this.formSubmitAttempt = true;
+    console.log(JSON.stringify(this.orden));
+/*    if (false) {
+      this.userService.createOrder(this.form.value).subscribe(
+        data => {
+          console.log('Aleluya ' + data);
+          this.dialogRef.close();
+        },
+        error => {
+          console.log('ALGO SE CAGO');
+          this.formSubmitAttempt = true;
+        }
+      );
+    } else {
+      this.formSubmitAttempt = true;
+    }*/
 
-    this.dialogRef.close();
   }
 
 }
