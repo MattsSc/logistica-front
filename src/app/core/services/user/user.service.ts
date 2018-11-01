@@ -57,7 +57,10 @@ export class UserService {
   }
 
   getOrders(): Observable<any> {
-    return this.http.get(this.orderUrl, this.httpOptions)
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+
+    return this.http.get(this.userUrl + this.authService.getToken() + '/orders' , httpOpts)
       .pipe(
         tap((orders) => {
           orders.forEach( order => {
