@@ -1,8 +1,8 @@
-<mat-form-field class="filter-input" *ngIf="dataSource.length > 0">
+<mat-form-field class="filter-input" *ngIf="dataSource && dataSource.data.length > 0">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<div class="orders-table mat-elevation-z8" *ngIf="dataSource.length > 0; else emptyTable">
+<div class="orders-table mat-elevation-z8"  *ngIf="dataSource && dataSource.data.length > 0; else emptyTable">
 
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 

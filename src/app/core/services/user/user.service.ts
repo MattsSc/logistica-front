@@ -74,8 +74,9 @@ export class UserService {
   }
 
   createOrder(orden: Order): Observable<any> {
-    this.httpOptions.headers = this.httpOptions.headers.append('X-User', this.authService.getToken());
-    return this.http.post(this.orderUrl, orden, this.httpOptions)
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+    return this.http.post(this.orderUrl, orden, httpOpts)
       .pipe(
         tap(() => {
           console.log('orden creada');

@@ -4,7 +4,8 @@ import {HeroService} from '../../../modules/heroes/shared/hero.service';
 import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
 import {AddOrderFormComponent} from '../../components/add-order-form/add-order-form.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {Order} from '../../../core/models/Order';
 
 @Component({
   selector: 'app-home-page',
@@ -15,24 +16,32 @@ import {MatDialog} from '@angular/material';
 
 export class HomePageComponent implements OnInit {
 
-  animal: string;
-  name: string;
+  showTable: boolean;
+  order: Order;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              public snackBar: MatSnackBar) {
+    this.showTable = true;
   }
 
   ngOnInit() {
+    this.order = new Order();
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddOrderFormComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
+      width: '250px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+    const sub = dialogRef.componentInstance.created.subscribe((orderCreated) => {
+      this.order = orderCreated;
+      this.snackBar.open('La orden ha sido creada', 'X', {
+        duration: 4000,
+      });
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
     });
   }
 }

@@ -23,6 +23,7 @@ export class AddOrderFormComponent implements OnInit {
   orden: Order;
   formSubmitAttempt: boolean;
   @Input() ordenModel: Order;
+  @Output() created: EventEmitter<Order> = new EventEmitter<Order>();
 
 
   constructor(
@@ -42,11 +43,9 @@ export class AddOrderFormComponent implements OnInit {
 
   onSubmit() {
     this.showError = false;
-    console.log(JSON.stringify(this.orden));
-/*    if (false) {
-      this.userService.createOrder(this.form.value).subscribe(
+      this.userService.createOrder(this.orden).subscribe(
         data => {
-          console.log('Aleluya ' + data);
+          this.created.emit(this.orden);
           this.dialogRef.close();
         },
         error => {
@@ -54,10 +53,5 @@ export class AddOrderFormComponent implements OnInit {
           this.formSubmitAttempt = true;
         }
       );
-    } else {
-      this.formSubmitAttempt = true;
-    }*/
-
-  }
-
+    }
 }

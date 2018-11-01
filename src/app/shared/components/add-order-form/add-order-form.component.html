@@ -12,8 +12,16 @@
     </div>
     <div>
       <mat-form-field class="full-width-input" >
-        <input matInput type="text" placeholder="{{'form.addressInput' | translate}}" class="login__input" id="domicilio" required  [(ngModel)]="orden.cliente.direccion" name="domicilio" #domicilio="ngModel">
-        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+        <input matInput type="text" placeholder="{{'form.lastnameInput' | translate}}" class="login__input" id="apellido" required [(ngModel)]="orden.cliente.apellido" name="apellido"  #apellido="ngModel">
+        <mat-error [hidden]="!(!apellido.valid  && apellido.touched) || !(!apellido.touched && formSubmitAttempt)">
+          {{'form-error.lastnameInputError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" >
+        <input matInput type="text" placeholder="{{'form.addressInput' | translate}}" class="login__input" id="direccion" required  [(ngModel)]="orden.cliente.direccion" name="direccion" #direccion="ngModel">
+        <mat-error [hidden]="!(!direccion.valid  && direccion.touched) || !(!direccion.touched && formSubmitAttempt)">
           {{'form-error.addressInputError' | translate}}
         </mat-error>
       </mat-form-field>
@@ -21,7 +29,7 @@
     <div>
       <mat-form-field class="full-width-input" >
         <input matInput type="email" placeholder="{{'form.emailInput' | translate}}" class="login__input" id="email" required  [(ngModel)]="orden.cliente.email" name="email" #email="ngModel">
-        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+        <mat-error [hidden]="!(!email.valid  && email.touched) || !(!email.touched && formSubmitAttempt)">
           {{'form-error.emailInputError' | translate}}
         </mat-error>
       </mat-form-field>
@@ -29,7 +37,7 @@
     <div>
       <mat-form-field class="full-width-input" >
         <input matInput type="number" placeholder="{{'form.weightInput' | translate}}" class="login__input" id="peso" required [(ngModel)]="orden.peso_total" name="peso" #peso="ngModel">
-        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+        <mat-error [hidden]="!(!peso.valid  && peso.touched) || !(!peso.touched && formSubmitAttempt)">
           {{'form-error.weightInputError' | translate}}
         </mat-error>
       </mat-form-field>

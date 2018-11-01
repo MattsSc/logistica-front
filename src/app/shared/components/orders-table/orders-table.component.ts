@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Order} from '../../../core/models/Order';
 import {UserService} from '../../../core/services/user/user.service';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
@@ -19,11 +19,12 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 
 
-export class OrdersTableComponent implements OnInit {
+export class OrdersTableComponent implements OnInit, OnChanges {
 
   displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'estado'];
   dataSource:  MatTableDataSource<Order>;
   expandedElement: Order;
+  @Input() order: Order;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -32,6 +33,26 @@ export class OrdersTableComponent implements OnInit {
 
   ngOnInit() {
     this.getAllOrders();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("HOLA");
+    // @ts-ignore
+    if (changes.order.currentValue !== changes.order.previousValue) {
+      console.log("HOLA2");
+      // @ts-ignore
+      console.log(JSON.stringify(changes.order.currentValue));
+      this.getAllOrders();
+    }
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
   }
 
   private applyFilter(filterValue: string) {

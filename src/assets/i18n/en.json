@@ -21,12 +21,14 @@
     "addressInput": "Address",
     "cityInput": "City",
     "nameInput":"Name",
+    "lastnameInput":"Surname",
     "weightInput": "Weight (Kg.)"
   },
   "form-error":{
     "userInputError": "User is required",
     "passInputError": "Password is required",
     "nameInputError": "Name is required",
+    "lastnameInputError":"Surname is required",
     "emailInputError": "E-mail is required",
     "dniInputError": "D.N.I. is requiredo",
     "addressInputError": "Address is required",
