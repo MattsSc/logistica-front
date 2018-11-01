@@ -10,6 +10,7 @@
   "addOrderBtn": "Add order",
   "alreadyHaveAccMsg": "I have an account,",
   "createAccMsg": "Don't have an account?",
+  "notHaveOrdersMsg": "You don't have any order",
   "createAccError": "Occurs an error, please try again later",
   "loginError": "Invalid user and/or password",
   "form":{
@@ -20,12 +21,14 @@
     "addressInput": "Address",
     "cityInput": "City",
     "nameInput":"Name",
+    "lastnameInput":"Surname",
     "weightInput": "Weight (Kg.)"
   },
   "form-error":{
     "userInputError": "User is required",
     "passInputError": "Password is required",
     "nameInputError": "Name is required",
+    "lastnameInputError":"Surname is required",
     "emailInputError": "E-mail is required",
     "dniInputError": "D.N.I. is requiredo",
     "addressInputError": "Address is required",

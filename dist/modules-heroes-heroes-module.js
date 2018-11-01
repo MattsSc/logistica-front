@@ -429,6 +429,136 @@ var HeroesListPageComponent = /** @class */ (function () {
 
 
 
+/***/ }),
+
+/***/ "./src/app/modules/heroes/shared/hero.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/modules/heroes/shared/hero.service.ts ***!
+  \*******************************************************/
+/*! exports provided: HeroService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeroService", function() { return HeroService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+/* harmony import */ var _biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @biesbjerg/ngx-translate-extract/dist/utils/utils */ "./node_modules/@biesbjerg/ngx-translate-extract/dist/utils/utils.js");
+/* harmony import */ var _biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../core/services/logger.service */ "./src/app/core/services/logger.service.ts");
+/* harmony import */ var _configs_app_config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../configs/app.config */ "./src/app/configs/app.config.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' })
+};
+var HeroService = /** @class */ (function () {
+    function HeroService(http, translateService, snackBar) {
+        this.http = http;
+        this.translateService = translateService;
+        this.snackBar = snackBar;
+        this.heroesUrl = _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"].endpoints.heroes;
+    }
+    HeroService_1 = HeroService;
+    HeroService.checkIfUserCanVote = function () {
+        return Number(localStorage.getItem('votes')) < _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"].votesLimit;
+    };
+    HeroService.handleError = function (operation, result) {
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            // TODO: send the error to remote logging infrastructure
+            console.error(error); // log to console instead
+            // TODO: better job of transforming error for user consumption
+            _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log(operation + " failed: " + error.message);
+            if (error.status >= 500) {
+                throw error;
+            }
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(result);
+        };
+    };
+    HeroService.prototype.getHeroes = function () {
+        return this.http.get(this.heroesUrl)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function () { return _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log("fetched heroes"); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HeroService_1.handleError('getHeroes', [])));
+    };
+    HeroService.prototype.getHeroById = function (id) {
+        var url = this.heroesUrl + "/" + id;
+        return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function () { return _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log("fetched hero id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HeroService_1.handleError("getHero id=" + id)));
+    };
+    HeroService.prototype.createHero = function (hero) {
+        var _this = this;
+        return this.http.post(this.heroesUrl, JSON.stringify({
+            name: hero.name,
+            alterEgo: hero.alterEgo
+        }), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (heroSaved) {
+            _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log("added hero w/ id=" + heroSaved.id);
+            _this.showSnackBar('heroCreated');
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HeroService_1.handleError('addHero')));
+    };
+    HeroService.prototype.deleteHeroById = function (id) {
+        var url = this.heroesUrl + "/" + id;
+        return this.http.delete(url, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function () { return _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log("deleted hero id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HeroService_1.handleError('deleteHero')));
+    };
+    HeroService.prototype.like = function (hero) {
+        var _this = this;
+        if (HeroService_1.checkIfUserCanVote()) {
+            var url = this.heroesUrl + "/" + hero.id + "/like";
+            return this.http
+                .post(url, {}, httpOptions)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function () {
+                _core_services_logger_service__WEBPACK_IMPORTED_MODULE_7__["LoggerService"].log("updated hero id=" + hero.id);
+                localStorage.setItem('votes', '' + (Number(localStorage.getItem('votes')) + 1));
+                hero.likes += 1;
+                _this.showSnackBar('saved');
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(HeroService_1.handleError('updateHero')));
+        }
+        else {
+            this.showSnackBar('heroLikeMaximum');
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])('maximum votes');
+        }
+    };
+    HeroService.prototype.showSnackBar = function (name) {
+        var _this = this;
+        this.translateService.get([String(Object(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__["_"])('heroCreated')), String(Object(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__["_"])('saved')),
+            String(Object(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__["_"])('heroLikeMaximum')), String(Object(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_6__["_"])('heroRemoved'))], { 'value': _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"].votesLimit }).subscribe(function (texts) {
+            var config = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBarConfig"]();
+            config.duration = _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"].snackBarDuration;
+            _this.snackBar.open(texts[name], 'OK', config);
+        });
+    };
+    HeroService = HeroService_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
+    ], HeroService);
+    return HeroService;
+    var HeroService_1;
+}());
+
+
+
 /***/ })
 
 }]);
