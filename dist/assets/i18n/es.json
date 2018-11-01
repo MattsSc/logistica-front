@@ -11,6 +11,7 @@
   "createAccFormBtn": "Crear cuenta",
   "createAccMsg": "¿No tienes una cuenta?",
   "alreadyHaveAccMsg": "Ya tengo una cuenta",
+  "notHaveOrdersMsg": "No posee ordenes",
   "createAccError": "Ha habido un error, intente mas tarde",
   "form":{
     "userInput": "Usuario",
@@ -20,6 +21,7 @@
     "addressInput": "Domicilio",
     "cityInput": "Localidad/Ciudad",
     "nameInput":"Nombre",
+    "lastnameInput":"Apellido",
     "weightInput": "Peso (Kg.)"
   },
   "form-error":{
@@ -27,9 +29,11 @@
     "passInputError": "Contraseña es requerida",
     "emailInputError": "E-mail es requerido",
     "nameInputError": "El nombre es requerido",
+    "lastnameInputError": "El apellido es requerido",
     "dniInputError": "D.N.I. es requerido",
     "addressInputError": "Dirección es requerido",
-    "cityInputError": "Localidad es requerido"
+    "cityInputError": "Localidad es requerido",
+    "weightInputError": "El peso es requerido"
   },
   "order":{
     "new": "Nuevo",
