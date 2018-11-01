@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {fadeInOut} from '../../helpers/utils.helper';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   createAccToggle: boolean;
   createdAcc: boolean;
 
-  constructor() {
+  constructor(public snackBar: MatSnackBar) {
     this.createAccToggle = false;
     this.createdAcc = false;
   }
@@ -24,10 +25,12 @@ export class LoginPageComponent implements OnInit {
     this.createAccToggle = !this.createAccToggle;
   }
 
-  userCreated(value: boolean) {
-    if (value === true) {
-      this.createdAcc = true;
+  openSnackBar(message: string, isCreated: boolean) {
+    if (isCreated) {
       this.createAcc();
+      this.snackBar.open(message, 'Cerrar', {
+        duration: 2000,
+      });
     }
   }
 }

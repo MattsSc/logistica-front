@@ -23,6 +23,7 @@ export class Origen {
 
 export class Cliente {
   public nombre: string;
+  public apellido: string;
   public direccion: string;
   public email: string;
   public dni: number;

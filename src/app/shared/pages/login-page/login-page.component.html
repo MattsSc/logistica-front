@@ -1,7 +1,5 @@
 <div class="content">
 
-  <p *ngIf="createdAcc" class="msg-error">{{'createAccSuccess' | translate}}</p>
-
   <div class="demo" *ngIf="!createAccToggle; else createAccBlock">
     <app-login-form></app-login-form>
     <p class="signup">{{'createAccMsg' | translate}} &nbsp;<a (click)="createAcc()">{{'createAccBtn' | translate}}</a></p>
@@ -10,7 +8,7 @@
 
   <ng-template #createAccBlock>
     <div class="demo">
-      <app-create-acc-form (created)="userCreated(value)"></app-create-acc-form>
+      <app-create-acc-form (created)="openSnackBar('Cuenta creada', $event)"></app-create-acc-form>
       <p class="signup" >{{'alreadyHaveAccMsg' | translate}} &nbsp;<a (click)="createAcc()">{{'alreadyHaveAccBtn' | translate}}</a></p>
     </div>
   </ng-template>

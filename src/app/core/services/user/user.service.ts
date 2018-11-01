@@ -43,8 +43,11 @@ export class UserService {
   }
 
   createUser(user: User): Observable<any> {
+    const httpOpts = Object.assign({}, this.httpOptions);
+    // @ts-ignore
+    httpOpts.responseType = 'Text';
     if (user.email !== '' && user.password !== '' ) {
-      return this.http.post<any>(this.userUrl, user, this.httpOptions)
+      return this.http.post<any>(this.userUrl, user, httpOpts)
         .pipe(
           tap(() => {
             console.log('Cuenta creada');
@@ -58,7 +61,7 @@ export class UserService {
       .pipe(
         tap((orders) => {
           orders.forEach( order => {
-            order.nombre = order.nombre + ' ' + order.apellido;
+            order.cliente.nombre = order.cliente.nombre + ' ' + order.cliente.apellido;
             order.fecha_recibido = order.fecha_recibido ? moment(order.fecha_recibido, 'YYYY-MM-DD').format('DD - MM - YYYY') : null;
             order.fecha_entregado = order.fecha_entregado ? moment(order.fecha_entregado, 'YYYY-MM-DD').format('DD - MM - YYYY') : null;
           });
