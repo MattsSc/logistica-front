@@ -4,10 +4,10 @@
 
 <div class="orders-table mat-elevation-z8"  *ngIf="dataSource && dataSource.data.length > 0; else emptyTable">
 
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <ng-container matColumnDef="ordenId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.orderId' | translate }} </mat-header-cell>
+      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'orders-table.orderId' | translate }} </mat-header-cell>
       <mat-cell  *matCellDef="let orden"> {{orden.orden_id}} </mat-cell>
     </ng-container>
 
@@ -45,7 +45,7 @@
     </ng-container>
 
     <ng-container matColumnDef="acciones">
-      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let orden">
         <button mat-mini-fab color="accent" *ngIf="orden.estado === 'NEW'"  (click)="editOrder(orden)">
           <i class="material-icons">

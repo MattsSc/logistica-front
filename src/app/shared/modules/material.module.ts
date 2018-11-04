@@ -14,6 +14,7 @@ import {
   MatSnackBarModule,
   MatTooltipModule,
   MatTableModule,
+  MatSortModule,
   MatExpansionModule,
   MatPaginatorModule,
   MatChipsModule
@@ -38,6 +39,7 @@ import {FormsModule} from '@angular/forms';
     MatListModule,
     MatDialogModule,
     MatTableModule,
+    MatSortModule,
     MatExpansionModule,
     MatPaginatorModule,
     MatChipsModule,
@@ -59,6 +61,7 @@ import {FormsModule} from '@angular/forms';
     MatListModule,
     MatDialogModule,
     MatTableModule,
+    MatSortModule,
     MatExpansionModule,
     MatPaginatorModule,
     MatChipsModule,

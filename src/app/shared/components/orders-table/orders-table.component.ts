@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Order} from '../../../core/models/Order';
 import {UserService} from '../../../core/services/user/user.service';
-import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog, Sort} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {OrderService} from '../../../core/services/order/order.service';
 import {AddOrderFormComponent} from '../add-order-form/add-order-form.component';
@@ -25,6 +25,7 @@ export class OrdersTableComponent implements OnInit, OnChanges {
 
   displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'direccion', 'estado', 'acciones'];
   dataSource:  MatTableDataSource<Order>;
+  sortedData: Array<Order>;
   @Input() order: Order;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -100,6 +101,32 @@ export class OrdersTableComponent implements OnInit, OnChanges {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'ordenId': return this.compare(a.orden_id, b.orden_id, isAsc);
+        case 'destinatario': return this.compare(a.cliente.nombre, b.cliente.nombre, isAsc);
+        case 'fechaEntregado': return this.compare(a.fecha_entregado, b.fecha_entregado, isAsc);
+        case 'direccion': return this.compare(a.cliente.direccion, b.cliente.direccion, isAsc);
+        case 'fechaRecibido': return this.compare(a.fecha_recibido, b.fecha_recibido, isAsc);
+        case 'estado': return this.compare(a.estado, b.estado, isAsc);
+        default: return 0;
+      }
+    });
+    this.dataSource.data = this.sortedData;
+  }
+
+  private compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
   private getAllOrders(): void {
