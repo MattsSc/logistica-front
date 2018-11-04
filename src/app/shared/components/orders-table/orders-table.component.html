@@ -13,7 +13,7 @@
 
     <ng-container matColumnDef="destinatario">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receiver' | translate }}  </mat-header-cell>
-      <mat-cell *matCellDef="let orden"> {{orden.cliente.nombre}} </mat-cell>
+      <mat-cell *matCellDef="let orden"> {{orden.cliente.nombre + ' ' + orden.cliente.apellido }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="fechaRecibido">
@@ -47,7 +47,7 @@
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
       <mat-cell *matCellDef="let orden">
-        <button mat-mini-fab color="accent" *ngIf="orden.estado === 'NEW'" >
+        <button mat-mini-fab color="accent" *ngIf="orden.estado === 'NEW'"  (click)="editOrder(orden)">
           <i class="material-icons">
             create
           </i></button>

@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {fadeInOut} from '../../helpers/utils.helper';
-import {MAT_DIALOG_DATA, MatDialogRef, MatTableDataSource} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../../core/services/user/user.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder} from '@angular/forms';
 import {Order} from '../../../core/models/Order';
+import {OrderService} from '../../../core/services/order/order.service';
 
 export interface DialogData {
   animal: string;
@@ -22,7 +22,7 @@ export class AddOrderFormComponent implements OnInit {
   showError: boolean;
   orden: Order;
   formSubmitAttempt: boolean;
-  @Input() ordenModel: Order;
+  isUpdate: boolean;
   @Output() created: EventEmitter<Order> = new EventEmitter<Order>();
 
 
@@ -30,11 +30,14 @@ export class AddOrderFormComponent implements OnInit {
     public dialogRef: MatDialogRef<AddOrderFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
-    private userService: UserService) {}
+    private orderService: OrderService) {}
 
   ngOnInit() {
     // @ts-ignore
-    this.orden = this.ordenModel || new Order();
+    this.orden = this.data ? this.data.ordenModel : new Order();
+    // @ts-ignore
+    this.isUpdate = this.data && this.data.ordenModel  ? true : false;
+
   }
 
   onNoClick(): void {
@@ -43,15 +46,37 @@ export class AddOrderFormComponent implements OnInit {
 
   onSubmit() {
     this.showError = false;
-      this.userService.createOrder(this.orden).subscribe(
-        data => {
-          this.created.emit(this.orden);
-          this.dialogRef.close();
-        },
-        error => {
-          console.log('ALGO SE CAGO');
-          this.formSubmitAttempt = true;
-        }
-      );
+    if (!this.isUpdate) {
+      this.createOrder();
+    } else {
+      this.updateOrder();
     }
+  }
+
+  private createOrder(): void {
+    this.orderService.createOrder(this.orden).subscribe(
+      data => {
+        this.created.emit(this.orden);
+        this.dialogRef.close();
+      },
+      error => {
+        console.log('ALGO SE CAGO');
+        this.formSubmitAttempt = true;
+      }
+    );
+  }
+
+  private updateOrder(): void {
+    this.orderService.updateOrder(this.orden).subscribe(
+      data => {
+        this.created.emit(this.orden);
+        this.dialogRef.close();
+      },
+      error => {
+        console.log('ALGO SE CAGO');
+        this.formSubmitAttempt = true;
+      }
+    );
+  }
+
 }

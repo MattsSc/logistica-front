@@ -30,7 +30,7 @@ export class HomePageComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddOrderFormComponent, {
-      width: '250px'
+      width: '400px'
     });
 
     const sub = dialogRef.componentInstance.created.subscribe((orderCreated) => {

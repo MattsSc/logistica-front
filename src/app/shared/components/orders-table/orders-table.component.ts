@@ -1,9 +1,10 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Order} from '../../../core/models/Order';
 import {UserService} from '../../../core/services/user/user.service';
-import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {OrderService} from '../../../core/services/order/order.service';
+import {AddOrderFormComponent} from '../add-order-form/add-order-form.component';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class OrdersTableComponent implements OnInit, OnChanges {
 
   constructor(private userService: UserService,
               private orderService: OrderService,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -64,6 +66,24 @@ export class OrdersTableComponent implements OnInit, OnChanges {
     );
   }
 
+  editOrder(orden: Order): void {
+    const dialogRef = this.dialog.open(AddOrderFormComponent,
+      {
+        // @ts-ignore
+        data: { ordenModel: orden},
+        width: '400px'
+      });
+
+    const sub = dialogRef.componentInstance.created.subscribe((orderCreated) => {
+      this.getAllOrders();
+      this.openSnackBar('La orden ' + orden.orden_id + ' se ha actualizado.');
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+  }
+
   setDataSourceAttributes(): void {
     this.dataSource.paginator = this.paginator;
   }
@@ -74,7 +94,7 @@ export class OrdersTableComponent implements OnInit, OnChanges {
     });
   }
 
-  private applyFilter(filterValue: string) : void {
+  private applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

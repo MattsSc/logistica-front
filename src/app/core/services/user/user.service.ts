@@ -64,7 +64,6 @@ export class UserService {
       .pipe(
         tap((orders) => {
           orders.forEach( order => {
-            order.cliente.nombre = order.cliente.nombre + ' ' + order.cliente.apellido;
             order.fecha_recibido = order.fecha_recibido ? moment(order.fecha_recibido, 'YYYY-MM-DD').format('DD - MM - YYYY') : null;
             order.fecha_entregado = order.fecha_entregado ? moment(order.fecha_entregado, 'YYYY-MM-DD').format('DD - MM - YYYY') : null;
           });
@@ -73,14 +72,4 @@ export class UserService {
       );
   }
 
-  createOrder(orden: Order): Observable<any> {
-    const httpOpts = Object.assign({}, this.httpOptions);
-    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
-    return this.http.post(this.orderUrl, orden, httpOpts)
-      .pipe(
-        tap(() => {
-          console.log('orden creada');
-        })
-      );
-  }
 }

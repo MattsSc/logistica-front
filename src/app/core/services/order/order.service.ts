@@ -48,6 +48,28 @@ export class OrderService {
       );
   }
 
+  createOrder(orden: Order): Observable<any> {
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+    return this.http.post(this.orderUrl, orden, httpOpts)
+      .pipe(
+        tap(() => {
+          console.log('orden creada');
+        })
+      );
+  }
+
+  updateOrder(orden: Order): Observable<any> {
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+    return this.http.patch(this.orderUrl + orden.orden_id, orden, httpOpts)
+      .pipe(
+        tap(() => {
+          console.log('orden actualizada');
+        })
+      );
+  }
+
 
   getHttpOpts(): any {
     const httpOpts = Object.assign({}, this.httpOptions);
