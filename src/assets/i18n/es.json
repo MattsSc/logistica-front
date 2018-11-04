@@ -45,6 +45,7 @@
     "orderId":"Orden Id",
     "status": "Estado",
     "receiver": "Destinatario",
+    "address": "Dirección",
     "deliveredDate": "Fecha de entrega",
     "receivedDate": "Fecha  recibida"
   },

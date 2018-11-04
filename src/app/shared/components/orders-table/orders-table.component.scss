@@ -1,42 +1,25 @@
 @import "mixins";
 
-table{
+table {
   width: 100%;
 
   tr.order-detail-row {
     height: 0;
   }
 
-  tr.order-row:not(.example-expanded-row):hover {
-    background: #606060;
-  }
-
-  tr.order-row:not(.example-expanded-row):active {
-    background: #606060;
-  }
-
   .order-row td {
     border-bottom-width: 0;
-  }
-
-  .order-detail {
-    overflow: hidden;
-    display: flex;
-  }
-
-  .order-description{
-    padding: 10px;
-    font-weight: bold;
-    font-size: 13px;
-
-    .description-field{
-      padding: 8px;
-    }
   }
 }
 
 .orders-table{
   margin-bottom: 2rem;
+}
+
+.btn-table{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .filter-input{

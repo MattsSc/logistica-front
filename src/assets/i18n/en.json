@@ -46,6 +46,7 @@
     "status": "Status",
     "deliveredDate": "Delivered date",
     "receiver": "Receiver",
+    "address": "Address",
     "receivedDate": "Received date"
   },
   "user-menu":{

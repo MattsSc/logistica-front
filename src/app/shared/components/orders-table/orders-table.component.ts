@@ -1,8 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Order} from '../../../core/models/Order';
 import {UserService} from '../../../core/services/user/user.service';
-import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {OrderService} from '../../../core/services/order/order.service';
 
 
 @Component({
@@ -21,14 +22,15 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export class OrdersTableComponent implements OnInit, OnChanges {
 
-  displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'estado'];
+  displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'direccion', 'estado', 'acciones'];
   dataSource:  MatTableDataSource<Order>;
-  expandedElement: Order;
   @Input() order: Order;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private orderService: OrderService,
+              public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -36,10 +38,8 @@ export class OrdersTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("HOLA");
     // @ts-ignore
     if (changes.order.currentValue !== changes.order.previousValue) {
-      console.log("HOLA2");
       // @ts-ignore
       console.log(JSON.stringify(changes.order.currentValue));
       this.getAllOrders();
@@ -51,11 +51,30 @@ export class OrdersTableComponent implements OnInit, OnChanges {
     this.setDataSourceAttributes();
   }
 
-  setDataSourceAttributes() {
+  deleteOrder(ordenId): void {
+    this.orderService.deleteOrder(ordenId).subscribe(
+      data => {
+        console.log('Orden eliminada');
+        this.dataSource.data.filter(ord => ord.orden_id !== ordenId);
+        this.openSnackBar('La orden se ha eliminado');
+      },
+      error => {
+        this.openSnackBar('Ha ocurrido un inconveniente');
+      }
+    );
+  }
+
+  setDataSourceAttributes(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  private applyFilter(filterValue: string) {
+  private openSnackBar(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 5000,
+    });
+  }
+
+  private applyFilter(filterValue: string) : void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
