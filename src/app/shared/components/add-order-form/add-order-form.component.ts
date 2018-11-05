@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder} from '@angular/forms';
 import {Order} from '../../../core/models/Order';
 import {OrderService} from '../../../core/services/order/order.service';
+import * as _ from 'lodash';
 
 export interface DialogData {
   animal: string;
@@ -34,7 +35,7 @@ export class AddOrderFormComponent implements OnInit {
 
   ngOnInit() {
     // @ts-ignore
-    this.orden = this.data ? this.data.ordenModel : new Order();
+    this.orden = this.data ? _.cloneDeep(this.data.ordenModel) : new Order();
     // @ts-ignore
     this.isUpdate = this.data && this.data.ordenModel  ? true : false;
 

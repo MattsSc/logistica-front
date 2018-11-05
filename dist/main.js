@@ -1449,6 +1449,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _core_models_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Order */ "./src/app/core/models/Order.ts");
 /* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1467,6 +1469,7 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var AddOrderFormComponent = /** @class */ (function () {
     function AddOrderFormComponent(dialogRef, data, fb, orderService) {
         this.dialogRef = dialogRef;
@@ -1477,7 +1480,7 @@ var AddOrderFormComponent = /** @class */ (function () {
     }
     AddOrderFormComponent.prototype.ngOnInit = function () {
         // @ts-ignore
-        this.orden = this.data ? this.data.ordenModel : new _core_models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
+        this.orden = this.data ? lodash__WEBPACK_IMPORTED_MODULE_6__["cloneDeep"](this.data.ordenModel) : new _core_models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
         // @ts-ignore
         this.isUpdate = this.data && this.data.ordenModel ? true : false;
     };
