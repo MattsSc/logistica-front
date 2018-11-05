@@ -26,10 +26,14 @@
                 <mat-icon>person</mat-icon>
               </button>
               <mat-menu #userMenu="matMenu">
-                <button mat-menu-item (click)="changeLanguage('en')">
+                <a mat-menu-item routerLink="{{myAcc.link}}">
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.information' | translate}}</span>
-                </button>
+                </a>
+                <a mat-menu-item routerLink="{{home.link}}">
+                  <mat-icon>library_books</mat-icon>
+                  <span>{{'user-menu.home' | translate}}</span>
+                </a>
                 <button mat-menu-item (click)="onLogout()">
                   <mat-icon>power_settings_new</mat-icon>
                   <span>{{'user-menu.logout' | translate}}</span>

@@ -56,6 +56,26 @@ export class UserService {
     }
   }
 
+  updateUser(user: User): Observable<any> {
+    if (user.email !== '' && user.password !== '' ) {
+      return this.http.put<any>(this.userUrl + this.authService.getToken(), user, this.getHttpOpts())
+        .pipe(
+          tap(() => {
+            console.log('Cuenta editada');
+          })
+        );
+    }
+  }
+
+  getUser(): Observable<any> {
+    return this.http.get<any>(this.userUrl + this.authService.getToken(), this.getHttpOpts())
+      .pipe(
+        tap(() => {
+          console.log('Obtuvo el user');
+        })
+      );
+  }
+
   getOrders(): Observable<any> {
     const httpOpts = Object.assign({}, this.httpOptions);
     httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
@@ -70,6 +90,12 @@ export class UserService {
           console.log('Buscando las ordenes');
         })
       );
+  }
+
+  getHttpOpts(): any {
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+    return httpOpts;
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Order} from '../../../core/models/Order';
 import {UserService} from '../../../core/services/user/user.service';
 import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog, Sort} from '@angular/material';

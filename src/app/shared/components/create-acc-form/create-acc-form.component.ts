@@ -49,12 +49,10 @@ export class CreateAccFormComponent implements OnInit {
       this.submitted = true;
       this.userService.createUser(this.form.value).subscribe(
         data => {
-          console.log("aca" + JSON.stringify(data));
           this.submitted = false;
           this.created.emit(true);
         },
         error => {
-          console.log("porque" + JSON.stringify(error));
           this.submitted = !this.submitted;
           this.showError = true;
           this.created.emit(false);

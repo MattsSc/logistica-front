@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Hero} from '../../../modules/heroes/shared/hero.model';
-import {HeroService} from '../../../modules/heroes/shared/hero.service';
-import {AppConfig} from '../../../configs/app.config';
 import {fadeInOut} from '../../helpers/utils.helper';
 import {AddOrderFormComponent} from '../../components/add-order-form/add-order-form.component';
 import {MatDialog, MatSnackBar} from '@angular/material';

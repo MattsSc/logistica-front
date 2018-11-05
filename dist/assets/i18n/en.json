@@ -46,11 +46,17 @@
     "status": "Status",
     "deliveredDate": "Delivered date",
     "receiver": "Receiver",
+    "address": "Address",
     "receivedDate": "Received date"
   },
   "user-menu":{
     "information": "My Information",
+    "home": "My orders",
     "logout": "Logout"
+  },
+  "acc-form":{
+    "loginInfoHint": "Login Information",
+    "personalInfoHint": "Personal Information"
   },
 
 

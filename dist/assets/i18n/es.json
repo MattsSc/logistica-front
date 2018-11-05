@@ -45,12 +45,18 @@
     "orderId":"Orden Id",
     "status": "Estado",
     "receiver": "Destinatario",
+    "address": "Dirección",
     "deliveredDate": "Fecha de entrega",
     "receivedDate": "Fecha  recibida"
   },
   "user-menu":{
     "information": "Mis datos",
+    "home": "Mis ordenes",
     "logout": "Cerrar sesion"
+  },
+  "acc-form":{
+    "loginInfoHint": "Datos de login",
+    "personalInfoHint": "Datos personales"
   },
 
 

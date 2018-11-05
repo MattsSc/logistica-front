@@ -1,0 +1,7 @@
+<div fxLayout="row">
+  <div fxFlex="10" fxFlex.gt-sm="5"></div>
+  <div fxFlex="90" fxFlex.gt-sm="90" class="content-info">
+    <app-acc-form *ngIf="this.user" [userModel]="user" (created)="isUpdated($event)"></app-acc-form>
+  </div>
+  <div fxFlex="10" fxFlex.gt-sm="5"></div>
+</div>

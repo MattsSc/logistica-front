@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   @LocalStorage() language = 'es';
   isLoggedIn$: Observable<boolean>;
-
+  myAcc: any;
+  home: any;
   appConfig: any;
   menuItems: any[];
   progressBarMode: string;
@@ -33,6 +34,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.currentLang = this.translateService.currentLang;
     this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.myAcc = {link: '/myAccount', name: _('myAcc')};
+    this.home = {link: '/', name: _('home')};
     this.loadMenus();
     this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
       this.progressBarMode = mode;
@@ -49,11 +52,10 @@ export class HeaderComponent implements OnInit {
   private loadMenus(): void {
     this.menuItems = [
       {link: '/', name: _('home')},
-      {link: '/' + AppConfig.routes.heroes, name: _('heroesList')}
     ];
   }
 
   onLogout(): void {
-    this.authService.logout();                      // {3}
+    this.authService.logout();
   }
 }

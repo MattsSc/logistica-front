@@ -15,9 +15,10 @@ import {Error404PageComponent} from './pages/error404-page/error404-page.compone
 import {ScrollToFirstInvalidDirective} from './directives/scroll-to-first-invalid.directive';
 import {NgxExampleLibraryModule} from '@ismaestro/ngx-example-library';
 import {WebStorageModule} from 'ngx-store';
-import { HeroLoadingComponent } from './components/hero-loading/hero-loading.component';
 import {OrdersTableComponent} from './components/orders-table/orders-table.component';
 import {AddOrderFormComponent} from './components/add-order-form/add-order-form.component';
+import {AccFormComponent} from './components/acc-form/acc-form.component';
+import {MyInfoPageComponent} from './pages/my-info-page/my-info-page.component';
 
 @NgModule({
   imports: [
@@ -33,14 +34,15 @@ import {AddOrderFormComponent} from './components/add-order-form/add-order-form.
   declarations: [
     HomePageComponent,
     LoginPageComponent,
+    MyInfoPageComponent,
     LoginFormComponent,
     AddOrderFormComponent,
     CreateAccFormComponent,
+    AccFormComponent,
     OrdersTableComponent,
     Error404PageComponent,
     HeaderComponent,
     SpinnerComponent,
-    HeroLoadingComponent,
     ScrollToFirstInvalidDirective
   ],
   exports: [
@@ -53,10 +55,11 @@ import {AddOrderFormComponent} from './components/add-order-form/add-order-form.
     HeaderComponent,
     SpinnerComponent,
     LoginFormComponent,
+    MyInfoPageComponent,
     AddOrderFormComponent,
     CreateAccFormComponent,
+    AccFormComponent,
     OrdersTableComponent,
-    HeroLoadingComponent,
     ScrollToFirstInvalidDirective
   ]
 })

@@ -12,9 +12,5 @@ export const AppConfig: any = {
     login: 'https://logistica-uade-app.herokuapp.com/logistica/user/login',
     user: 'https://logistica-uade-app.herokuapp.com/logistica/user/',
     orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/'
-  },
-  votesLimit: 3,
-  topHeroesLimit: 4,
-  snackBarDuration: 3000,
-  repositoryURL: 'https://github.com/ismaestro/angular6-example-app'
+  }
 };

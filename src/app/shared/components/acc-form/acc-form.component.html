@@ -1,0 +1,69 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" style="background-color: #424242" class="acc-form">
+  <mat-list>
+    <mat-list-item class="list-title">
+      <h3>{{'acc-form.loginInfoHint' | translate }}</h3>
+    </mat-list-item>
+    <mat-list-item>
+      <div class="acc-row">
+        <mat-form-field class="acc-input" >
+          <input matInput type="email" placeholder="{{'form.emailInput' | translate}}" class="acc__input" required [(ngModel)]="user.email" name="email"  #email="ngModel" [disabled]="isUpdate">
+          <mat-error [hidden]="!(!email.valid  && email.touched) || !(!email.touched && formSubmitAttempt)">
+            {{'form-error.emailInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="acc-row">
+        <mat-form-field class="acc-input">
+          <input matInput type="password" class="acc__input" placeholder="{{'form.passInput' | translate}}"  required [(ngModel)]="user.password" name="password"  #password="ngModel">
+          <mat-error [hidden]="!(!password.valid  && password.touched) || !(!password.touched && formSubmitAttempt)">
+            {{'form-error.passInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+    <mat-divider class="divider-form"></mat-divider>
+    <mat-list-item  class="list-title">
+      <h3>{{'acc-form.personalInfoHint' | translate }}</h3>
+    </mat-list-item>
+    <mat-list-item>
+      <div class="acc-row">
+        <mat-form-field class="acc-input" >
+          <input matInput placeholder="{{'form.nameInput' | translate}}" class="acc__input" required [(ngModel)]="user.nombre" name="name"  #nombre="ngModel">
+          <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+            {{'form-error.nameInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="acc-row">
+        <mat-form-field class="acc-input" >
+          <input matInput placeholder="{{'form.dniInput' | translate}}" class="acc__input" required [(ngModel)]="user.dni" name="dni"  #dni="ngModel">
+          <mat-error [hidden]="!(!dni.valid  && dni.touched) || !(!dni.touched && formSubmitAttempt)">
+            {{'form-error.dniInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+    <mat-list-item style="height: 100px">
+      <div class="acc-row">
+        <mat-form-field class="acc-input" >
+          <input matInput placeholder="{{'form.addressInput' | translate}}" class="acc__input" required [(ngModel)]="user.direccion" name="dirr"  #dirr="ngModel">
+          <mat-error [hidden]="!(!dirr.valid  && dirr.touched) || !(!dirr.touched && formSubmitAttempt)">
+            {{'form-error.addressInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="acc-row">
+        <mat-form-field class="acc-input" >
+          <input matInput placeholder="{{'form.cityInput' | translate}}" class="acc__input" required [(ngModel)]="user.localidad" name="localidad"  #localidad="ngModel">
+          <mat-error [hidden]="!(!localidad.valid  && localidad.touched) || !(!localidad.touched && formSubmitAttempt)">
+            {{'form-error.cityInputError' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+    <mat-divider class="divider-form"></mat-divider>
+    <mat-list-item>
+      <button mat-raised-button color="primary" class="acc__submit"  [disabled]="!userForm.form.valid">{{'loginBtn' | translate}}</button>
+    </mat-list-item>
+  </mat-list>
+ </form>
