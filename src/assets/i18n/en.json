@@ -1,6 +1,8 @@
 {
   "companyName": "Ravo",
   "ordenesTitle": "Your orders",
+  "orderTitle": "Order",
+  "orderFormHint": "Who receives the order? :",
   "loginBtn": "Login",
   "addBtn": "Add",
   "cancelBtn": "Cancel",

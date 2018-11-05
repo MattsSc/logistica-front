@@ -1,6 +1,8 @@
 {
   "companyName": "Ravo",
   "ordenesTitle": "Tus ordenes",
+  "orderTitle": "Orden",
+  "orderFormHint": "Quien y donde recibe:",
   "loginError": "Usuario y/o contraseña invalida",
   "loginBtn": "Aceptar",
   "addOrderBtn": "Agregar orden",
