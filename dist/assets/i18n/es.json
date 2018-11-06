@@ -51,6 +51,11 @@
     "deliveredDate": "Fecha de entrega",
     "receivedDate": "Fecha  recibida"
   },
+  "moviles-table":{
+    "id":"Patente",
+    "driver": "Conductor",
+    "weight": "Peso (Kg.)"
+  },
   "user-menu":{
     "information": "Mis datos",
     "home": "Mis ordenes",

@@ -3,17 +3,17 @@
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <ng-container matColumnDef="email">
-      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'orders-table.orderId' | translate }} </mat-header-cell>
+      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'users-table.email' | translate }} </mat-header-cell>
       <mat-cell  *matCellDef="let user"> {{user.email}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="prefijo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receiver' | translate }}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.prefix' | translate }}  </mat-header-cell>
       <mat-cell *matCellDef="let user"> {{user.prefix_file }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="estado">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receivedDate' | translate }}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.status' | translate }}  </mat-header-cell>
       <mat-cell *matCellDef="let user"> Activo </mat-cell>
     </ng-container>
 

@@ -51,6 +51,16 @@
     "address": "Address",
     "receivedDate": "Received date"
   },
+  "users-table":{
+    "email":"Email",
+    "status": "Status",
+    "prefix": "Prefix"
+  },
+  "moviles-table":{
+    "id":"License plate",
+    "driver": "Driver",
+    "weight": "Weight (Kg.)"
+  },
   "user-menu":{
     "information": "My Information",
     "home": "My orders",

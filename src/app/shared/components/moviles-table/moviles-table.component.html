@@ -3,17 +3,17 @@
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <ng-container matColumnDef="patente">
-      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'orders-table.orderId' | translate }} </mat-header-cell>
+      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'moviles-table.id' | translate }} </mat-header-cell>
       <mat-cell  *matCellDef="let movil"> {{movil.patente}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="conductor">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receiver' | translate }}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.driver' | translate }}  </mat-header-cell>
       <mat-cell *matCellDef="let movil"> {{movil.nombre }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="capacidad">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receivedDate' | translate }}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.weight' | translate }}  </mat-header-cell>
       <mat-cell *matCellDef="let movil"> {{movil.peso}} </mat-cell>
     </ng-container>
 
