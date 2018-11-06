@@ -60,6 +60,7 @@ export class OrdersTableComponent implements OnInit, OnChanges {
         console.log('Orden eliminada');
         this.dataSource.data.filter(ord => ord.orden_id !== ordenId);
         this.openSnackBar('La orden se ha eliminado');
+        this.getAllOrders();
       },
       error => {
         this.openSnackBar('Ha ocurrido un inconveniente');

@@ -1946,6 +1946,7 @@ var OrdersTableComponent = /** @class */ (function () {
             console.log('Orden eliminada');
             _this.dataSource.data.filter(function (ord) { return ord.orden_id !== ordenId; });
             _this.openSnackBar('La orden se ha eliminado');
+            _this.getAllOrders();
         }, function (error) {
             _this.openSnackBar('Ha ocurrido un inconveniente');
         });
