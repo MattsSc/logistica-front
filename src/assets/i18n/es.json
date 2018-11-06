@@ -37,6 +37,11 @@
     "cityInputError": "Localidad es requerido",
     "weightInputError": "El peso es requerido"
   },
+  "admin":{
+    "title": "Dashboard",
+    "moviles": "Moviles",
+    "users": "Usuarios"
+  },
   "order":{
     "new": "Nuevo",
     "onWay": "En camino",
@@ -50,6 +55,11 @@
     "address": "Dirección",
     "deliveredDate": "Fecha de entrega",
     "receivedDate": "Fecha  recibida"
+  },
+  "users-table":{
+    "email":"Email",
+    "status": "Estado",
+    "prefix": "Prefijo"
   },
   "moviles-table":{
     "id":"Patente",

@@ -15,6 +15,11 @@
   "notHaveOrdersMsg": "You don't have any order",
   "createAccError": "Occurs an error, please try again later",
   "loginError": "Invalid user and/or password",
+  "admin":{
+    "title": "Dashboard",
+    "moviles": "Moviles",
+    "users": "Users"
+  },
   "form":{
     "userInput": "User",
     "passInput": "Password",
