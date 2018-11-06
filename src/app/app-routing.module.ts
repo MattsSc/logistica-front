@@ -6,9 +6,11 @@ import {AppConfig} from './configs/app.config';
 import {LoginPageComponent} from './shared/pages/login-page/login-page.component';
 import {AuthGuard} from './core/services/auth/auth.guard';
 import {MyInfoPageComponent} from './shared/pages/my-info-page/my-info-page.component';
+import {HomeAdminPageComponent} from './shared/pages/home-admin-page/home-admin-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  {path: 'admin', component: HomeAdminPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   {path: 'login', component: LoginPageComponent, pathMatch: 'full'},
   {path: 'myAccount', component: MyInfoPageComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   {path: AppConfig.routes.error404, component: Error404PageComponent},

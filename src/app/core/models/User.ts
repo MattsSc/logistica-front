@@ -6,6 +6,8 @@ export class User {
   public localidad: string;
   public password: string;
   public id: string;
+  public prefix_file: string;
+  public estado: boolean;
 
   constructor() {}
 }

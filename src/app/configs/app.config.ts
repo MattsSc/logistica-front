@@ -11,6 +11,7 @@ export const AppConfig: any = {
     heroes: 'https://nodejs-example-app.herokuapp.com/heroes',
     login: 'https://logistica-uade-app.herokuapp.com/logistica/user/login',
     user: 'https://logistica-uade-app.herokuapp.com/logistica/user/',
-    orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/'
+    orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/',
+    movil: 'https://logistica-uade-app.herokuapp.com/logistica/movil/'
   }
 };

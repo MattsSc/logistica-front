@@ -48,7 +48,7 @@ export class AuthService {
   private existCookieSession(): void {
     if (this.cookieService.get('ravo_login')) {
       this.loggedIn.next(true);
-      this.router.navigate(['/']);
+      this.cookieService.get('ravo_login') === 'admin' ? this.router.navigate(['/admin']) : this.router.navigate(['/']);
     }
   }
 
@@ -60,7 +60,11 @@ export class AuthService {
             console.log('Log ' + res);
             this.loggedIn.next(true);
             this.cookieService.set('ravo_login', res);
-            this.router.navigate(['/']);
+            if (res === 'admin') {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/']);
+            }
           })
         );
     }

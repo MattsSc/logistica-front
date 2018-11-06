@@ -76,6 +76,15 @@ export class UserService {
       );
   }
 
+  getUsers(): Observable<any> {
+    return this.http.get<any>(this.userUrl, this.getHttpOpts())
+      .pipe(
+        tap(() => {
+          console.log('Obtuvo el user');
+        })
+      );
+  }
+
   getOrders(): Observable<any> {
     const httpOpts = Object.assign({}, this.httpOptions);
     httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());

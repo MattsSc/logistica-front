@@ -1,0 +1,43 @@
+<div class="orders-table mat-elevation-z8"  *ngIf="dataSource && dataSource.data.length > 0; else emptyTable">
+
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'orders-table.orderId' | translate }} </mat-header-cell>
+      <mat-cell  *matCellDef="let user"> {{user.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prefijo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receiver' | translate }}  </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.prefix_file }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.receivedDate' | translate }}  </mat-header-cell>
+      <mat-cell *matCellDef="let user"> Activo </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-mini-fab color="accent" >
+          <i class="material-icons">
+            create
+          </i></button>
+        <button mat-mini-fab color="warn" class="btn-table" >
+          <i class="material-icons">
+            delete
+          </i></button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let user; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+</div>
+
+<ng-template #emptyTable>
+  <div class="orders-table not-fount-records" > {{ 'notHaveOrdersMsg' | translate }}</div>
+</ng-template>

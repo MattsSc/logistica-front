@@ -15,6 +15,7 @@ import {UserService} from './core/services/user/user.service';
 import {CookieService} from 'ngx-cookie-service';
 import {AddOrderFormComponent} from './shared/components/add-order-form/add-order-form.component';
 import {OrderService} from './core/services/order/order.service';
+import {MovilService} from './core/services/movil/movil.service';
 
 @NgModule({
   imports: [
@@ -39,7 +40,7 @@ import {OrderService} from './core/services/order/order.service';
   ],
   entryComponents: [ AddOrderFormComponent ],
   providers: [
-    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, OrderService, AuthGuard, CookieService
+    {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, MovilService, OrderService, AuthGuard, CookieService
   ],
   bootstrap: [AppComponent]
 })

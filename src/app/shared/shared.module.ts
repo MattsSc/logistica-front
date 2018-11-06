@@ -19,6 +19,9 @@ import {OrdersTableComponent} from './components/orders-table/orders-table.compo
 import {AddOrderFormComponent} from './components/add-order-form/add-order-form.component';
 import {AccFormComponent} from './components/acc-form/acc-form.component';
 import {MyInfoPageComponent} from './pages/my-info-page/my-info-page.component';
+import {HomeAdminPageComponent} from './pages/home-admin-page/home-admin-page.component';
+import {MovilesTableComponent} from './components/moviles-table/moviles-table.component';
+import {UsersTableComponent} from './components/users-table/users-table.component';
 
 @NgModule({
   imports: [
@@ -33,6 +36,7 @@ import {MyInfoPageComponent} from './pages/my-info-page/my-info-page.component';
   ],
   declarations: [
     HomePageComponent,
+    HomeAdminPageComponent,
     LoginPageComponent,
     MyInfoPageComponent,
     LoginFormComponent,
@@ -40,6 +44,8 @@ import {MyInfoPageComponent} from './pages/my-info-page/my-info-page.component';
     CreateAccFormComponent,
     AccFormComponent,
     OrdersTableComponent,
+    MovilesTableComponent,
+    UsersTableComponent,
     Error404PageComponent,
     HeaderComponent,
     SpinnerComponent,
@@ -60,6 +66,8 @@ import {MyInfoPageComponent} from './pages/my-info-page/my-info-page.component';
     CreateAccFormComponent,
     AccFormComponent,
     OrdersTableComponent,
+    MovilesTableComponent,
+    UsersTableComponent,
     ScrollToFirstInvalidDirective
   ]
 })
