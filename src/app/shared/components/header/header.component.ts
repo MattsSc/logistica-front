@@ -18,9 +18,10 @@ export class HeaderComponent implements OnInit {
   @LocalStorage() language = 'es';
   isLoggedIn$: Observable<boolean>;
   myAcc: any;
+  dashboard: any;
+  isAdmin: boolean;
   home: any;
   appConfig: any;
-  menuItems: any[];
   progressBarMode: string;
   currentLang: string;
 
@@ -35,8 +36,9 @@ export class HeaderComponent implements OnInit {
     this.currentLang = this.translateService.currentLang;
     this.isLoggedIn$ = this.authService.isLoggedIn;
     this.myAcc = {link: '/myAccount', name: _('myAcc')};
+    this.dashboard = {link: '/admin', name: _('myAcc')};
     this.home = {link: '/', name: _('home')};
-    this.loadMenus();
+    this.isAdmin = this.authService.getToken() === 'admin';
     this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
       this.progressBarMode = mode;
     });
@@ -44,15 +46,8 @@ export class HeaderComponent implements OnInit {
 
   changeLanguage(language: string): void {
     this.translateService.use(language).subscribe(() => {
-      this.loadMenus();
       this.language = language;
     });
-  }
-
-  private loadMenus(): void {
-    this.menuItems = [
-      {link: '/', name: _('home')},
-    ];
   }
 
   onLogout(): void {

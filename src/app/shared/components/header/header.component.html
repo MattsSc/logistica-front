@@ -26,11 +26,15 @@
                 <mat-icon>person</mat-icon>
               </button>
               <mat-menu #userMenu="matMenu">
-                <a mat-menu-item routerLink="{{myAcc.link}}">
+                <a mat-menu-item routerLink="{{myAcc.link}}" *ngIf="!isAdmin">
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.information' | translate}}</span>
                 </a>
-                <a mat-menu-item routerLink="{{home.link}}">
+                <a mat-menu-item routerLink="{{dashboard.link}}" *ngIf="isAdmin">
+                  <mat-icon>library_books</mat-icon>
+                  <span>{{'user-menu.admin' | translate}}</span>
+                </a>
+                <a mat-menu-item routerLink="{{home.link}}" *ngIf="!isAdmin">
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.home' | translate}}</span>
                 </a>
