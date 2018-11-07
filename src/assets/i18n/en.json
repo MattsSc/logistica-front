@@ -10,6 +10,8 @@
   "alreadyHaveAccBtn": "Go Back!",
   "createAccBtn": "Sign up!",
   "addOrderBtn": "Add order",
+  "addUserBtn": "Add User",
+  "addMovilBtn": "Add Movil",
   "alreadyHaveAccMsg": "I have an account,",
   "createAccMsg": "Don't have an account?",
   "notHaveOrdersMsg": "You don't have any order",

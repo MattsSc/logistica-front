@@ -6,6 +6,8 @@
   "loginError": "Usuario y/o contraseña invalida",
   "loginBtn": "Aceptar",
   "addOrderBtn": "Agregar orden",
+  "addUserBtn": "Agregar Usuario",
+  "addMovilBtn": "Agregar Movil",
   "addBtn": "Agregar",
   "cancelBtn": "Cancelar",
   "alreadyHaveAccBtn": "Volver atras",

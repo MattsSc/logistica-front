@@ -17,6 +17,7 @@ export class MovilService {
   };
 
   constructor(
+    private authService: AuthService,
     private router: Router,
     private http: HttpClient
   ) {
@@ -45,5 +46,20 @@ export class MovilService {
           console.log('Obteniendo Moviles');
         })
       );
+  }
+
+  deleteMovil(movId: string): Observable<any> {
+    return this.http.delete(this.movilUrl + movId, this.getHttpOpts())
+      .pipe(
+        tap(() => {
+          console.log('Eliminado Movil');
+        })
+      );
+  }
+
+  getHttpOpts(): any {
+    const httpOpts = Object.assign({}, this.httpOptions);
+    httpOpts.headers = httpOpts.headers.append('X-User', this.authService.getToken());
+    return httpOpts;
   }
 }

@@ -1,4 +1,4 @@
-<div class="orders-table mat-elevation-z8"  *ngIf="dataSource && dataSource.data.length > 0; else emptyTable">
+<div class="orders-table mat-elevation-z8"  *ngIf="dataSource && dataSource.data.length >= 0; else emptyTable">
 
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
@@ -20,11 +20,11 @@
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let movil">
-        <button mat-mini-fab color="accent" >
+        <button mat-button color="accent" >
           <i class="material-icons">
             create
           </i></button>
-        <button mat-mini-fab color="warn" class="btn-table" >
+        <button mat-button color="warn" (click)="deleteMovil(movil._id)">
           <i class="material-icons">
             delete
           </i></button>
@@ -35,9 +35,11 @@
     <mat-row *matRowDef="let movil; columns: displayedColumns;"></mat-row>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
 </div>
 
 <ng-template #emptyTable>
-  <div class="orders-table not-fount-records" > {{ 'notHaveOrdersMsg' | translate }}</div>
+  <div class="center-loading">
+    <mat-spinner [diameter]="100"></mat-spinner>
+  </div>
 </ng-template>

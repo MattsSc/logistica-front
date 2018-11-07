@@ -1,11 +1,13 @@
-<h2 style="text-align:  center">{{'admin.title' | translate }}</h2>
+<h1 style="text-align:  center">{{'admin.title' | translate }}</h1>
 <div fxLayout="row">
   <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
     <h3 style="text-align:  center">{{'admin.moviles' | translate }}</h3>
+    <button mat-flat-button color="primary" class="add-movil" >{{'addMovilBtn' | translate }}</button>
     <app-moviles-table></app-moviles-table>
   </div>
   <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
     <h3 style="text-align:  center">{{'admin.users' | translate }}</h3>
+    <button mat-flat-button color="primary" class="add-movil" >{{'addUserBtn' | translate }}</button>
     <app-users-table></app-users-table>
   </div>
 </div>

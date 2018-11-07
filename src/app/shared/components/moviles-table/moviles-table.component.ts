@@ -19,7 +19,7 @@ import {MovilService} from '../../../core/services/movil/movil.service';
 })
 
 
-export class MovilesTableComponent implements OnInit, OnChanges {
+export class MovilesTableComponent implements OnInit {
 
   displayedColumns: string[] = ['patente', 'conductor', 'capacidad', 'acciones'];
   dataSource:  MatTableDataSource<Movil>;
@@ -34,9 +34,6 @@ export class MovilesTableComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getAllMoviles();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
   }
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
@@ -65,6 +62,24 @@ export class MovilesTableComponent implements OnInit, OnChanges {
       }
     });
     this.dataSource.data = this.sortedData;
+  }
+
+  deleteMovil(movilId: string): void {
+    this.movilService.deleteMovil(movilId).subscribe(
+      data => {
+        this.openSnackBar('El movil se ha eliminado');
+        this.getAllMoviles();
+      },
+      error => {
+        console.log('ALGO SE CAGO');
+      }
+    );
+  }
+
+  private openSnackBar(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 5000,
+    });
   }
 
   private compare(a: number | string, b: number | string, isAsc: boolean) {
