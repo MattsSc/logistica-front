@@ -20,7 +20,7 @@
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let movil">
-        <button mat-button color="accent" >
+        <button mat-button color="accent" (click)="openDialog(movil)">
           <i class="material-icons">
             create
           </i></button>

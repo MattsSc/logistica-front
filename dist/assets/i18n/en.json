@@ -24,6 +24,7 @@
   },
   "form":{
     "userInput": "User",
+    "licenseInput": "License plate",
     "passInput": "Password",
     "emailInput": "E-mail",
     "dniInput": "D.N.I.",
@@ -34,6 +35,7 @@
     "weightInput": "Weight (Kg.)"
   },
   "form-error":{
+    "licenseInputError": "License plate is required",
     "userInputError": "User is required",
     "passInputError": "Password is required",
     "nameInputError": "Name is required",

@@ -8,6 +8,7 @@ import {tap} from 'rxjs/operators';
 import * as moment from 'moment';
 import {Order} from '../../models/Order';
 import {AuthService} from '../auth/auth.service';
+import {Movil} from '../../models/Movil';
 
 @Injectable()
 export class MovilService {
@@ -44,6 +45,24 @@ export class MovilService {
       .pipe(
         tap(() => {
           console.log('Obteniendo Moviles');
+        })
+      );
+  }
+
+  createMovil(movil: Movil): Observable<any> {
+    return this.http.post(this.movilUrl, movil, this.getHttpOpts())
+      .pipe(
+        tap(() => {
+          console.log('Creando Movil');
+        })
+      );
+  }
+
+  updateMovil(movil: Movil): Observable<any> {
+    return this.http.put(this.movilUrl + movil._id, movil, this.getHttpOpts())
+      .pipe(
+        tap(() => {
+          console.log('Actualizando Movil');
         })
       );
   }

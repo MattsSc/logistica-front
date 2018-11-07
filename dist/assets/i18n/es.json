@@ -19,6 +19,7 @@
   "createAccError": "Ha habido un error, intente mas tarde",
   "form":{
     "userInput": "Usuario",
+    "licenseInput": "Patente",
     "passInput": "Contraseña",
     "emailInput": "E-mail",
     "dniInput": "D.N.I.",
@@ -30,6 +31,7 @@
   },
   "form-error":{
     "userInputError": "Usuario es requerido",
+    "licenseInputError": "Patente requerida",
     "passInputError": "Contraseña es requerida",
     "emailInputError": "E-mail es requerido",
     "nameInputError": "El nombre es requerido",

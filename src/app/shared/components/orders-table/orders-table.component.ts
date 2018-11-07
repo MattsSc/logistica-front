@@ -43,8 +43,6 @@ export class OrdersTableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // @ts-ignore
     if (changes.order.currentValue !== changes.order.previousValue) {
-      // @ts-ignore
-      console.log(JSON.stringify(changes.order.currentValue));
       this.getAllOrders();
     }
   }

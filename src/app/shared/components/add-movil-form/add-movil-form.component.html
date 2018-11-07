@@ -1,0 +1,34 @@
+<h1 mat-dialog-title class="title">{{ 'admin.moviles' | translate }}</h1>
+<div mat-dialog-content>
+  <p>{{ 'orderFormHint' | translate }}</p>
+  <form #movilForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div>
+      <mat-form-field class="full-width-input" class="form-field-order">
+        <input matInput type="text" placeholder="{{'form.nameInput' | translate}}" class="order__input" id="nombre" required [(ngModel)]="movil.nombre" name="nombre"  #nombre="ngModel">
+        <mat-error [hidden]="!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)">
+          {{'form-error.nameInputError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" class="form-field-order">
+        <input matInput type="text" placeholder="{{'form.licenseInput' | translate}}" class="order__input" id="patente" required [(ngModel)]="movil.patente" name="patente" [disabled]="isUpdate"  #patente="ngModel">
+        <mat-error [hidden]="!(!patente.valid  && patente.touched) || !(!patente.touched && formSubmitAttempt)">
+          {{'form-error.licenseInputError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width-input" class="form-field-order">
+        <input matInput type="number" placeholder="{{'form.weightInput' | translate}}" class="login__input" id="peso" required [(ngModel)]="movil.peso" name="peso" #peso="ngModel">
+        <mat-error [hidden]="!(!peso.valid  && peso.touched) || !(!peso.touched && formSubmitAttempt)">
+          {{'form-error.weightInputError' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="btn-order">
+  <button mat-button (click)="onNoClick()">{{ 'cancelBtn' | translate }}</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial [disabled]="!movilForm.form.valid">{{'addBtn' | translate }}</button>
+</div>

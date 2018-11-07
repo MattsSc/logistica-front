@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {fadeInOut} from '../../helpers/utils.helper';
-import {AddOrderFormComponent} from '../../components/add-order-form/add-order-form.component';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {Order} from '../../../core/models/Order';
+import {AddMovilFormComponent} from '../../components/add-movil-form/add-movil-form.component';
+import {Movil} from '../../../core/models/Movil';
 
 @Component({
   selector: 'app-home-admin-page',
@@ -14,7 +15,7 @@ import {Order} from '../../../core/models/Order';
 export class HomeAdminPageComponent implements OnInit {
 
   showTable: boolean;
-  order: Order;
+  movil: Movil;
 
   constructor(public dialog: MatDialog,
               public snackBar: MatSnackBar) {
@@ -22,17 +23,17 @@ export class HomeAdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.order = new Order();
+    this.movil = new Movil();
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddOrderFormComponent, {
+    const dialogRef = this.dialog.open(AddMovilFormComponent, {
       width: '400px'
     });
 
-    const sub = dialogRef.componentInstance.created.subscribe((orderCreated) => {
-      this.order = orderCreated;
-      this.snackBar.open('La orden ha sido creada', 'X', {
+    const sub = dialogRef.componentInstance.created.subscribe((newMovil) => {
+      this.movil = newMovil;
+      this.snackBar.open('El movil ha sido creado', 'X', {
         duration: 4000,
       });
     });

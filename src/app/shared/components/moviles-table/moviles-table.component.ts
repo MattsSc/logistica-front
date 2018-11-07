@@ -1,8 +1,9 @@
-import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog, Sort} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Movil} from '../../../core/models/Movil';
 import {MovilService} from '../../../core/services/movil/movil.service';
+import {AddMovilFormComponent} from '../add-movil-form/add-movil-form.component';
 
 
 @Component({
@@ -19,11 +20,12 @@ import {MovilService} from '../../../core/services/movil/movil.service';
 })
 
 
-export class MovilesTableComponent implements OnInit {
+export class MovilesTableComponent implements OnInit, OnChanges {
 
   displayedColumns: string[] = ['patente', 'conductor', 'capacidad', 'acciones'];
   dataSource:  MatTableDataSource<Movil>;
   sortedData: Array<Movil>;
+  @Input() movil: Movil;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -31,6 +33,14 @@ export class MovilesTableComponent implements OnInit {
               public snackBar: MatSnackBar,
               public dialog: MatDialog) {
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // @ts-ignore
+    if (changes.movil.currentValue !== changes.movil.previousValue) {
+      this.getAllMoviles();
+    }
+  }
+
 
   ngOnInit() {
     this.getAllMoviles();
@@ -74,6 +84,22 @@ export class MovilesTableComponent implements OnInit {
         console.log('ALGO SE CAGO');
       }
     );
+  }
+
+  openDialog(movil: Movil): void {
+    const dialogRef = this.dialog.open(AddMovilFormComponent, {
+      width: '400px',
+      data: {movilModel: movil}
+    });
+
+    const sub = dialogRef.componentInstance.created.subscribe((newMovil) => {
+      this.openSnackBar('El movil de ' +  newMovil.nombre + ' ha sido actualizado');
+      this.getAllMoviles();
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
   }
 
   private openSnackBar(msg: string): void {

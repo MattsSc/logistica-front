@@ -549,12 +549,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/components/add-order-form/add-order-form.component */ "./src/app/shared/components/add-order-form/add-order-form.component.ts");
 /* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
 /* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
+/* harmony import */ var _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -598,7 +600,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]
             ],
-            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"]],
+            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"], _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__["AddMovilFormComponent"]],
             providers: [
                 { provide: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["APP_CONFIG"], useValue: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"] }, _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"], _core_services_user_user_service__WEBPACK_IMPORTED_MODULE_13__["UserService"], _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__["MovilService"], _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_16__["OrderService"], _core_services_auth_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__["CookieService"]
             ],
@@ -783,6 +785,26 @@ var TimingInterceptor = /** @class */ (function () {
         }));
     };
     return TimingInterceptor;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/models/Movil.ts":
+/*!**************************************!*\
+  !*** ./src/app/core/models/Movil.ts ***!
+  \**************************************/
+/*! exports provided: Movil */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Movil", function() { return Movil; });
+var Movil = /** @class */ (function () {
+    function Movil() {
+    }
+    return Movil;
 }());
 
 
@@ -1108,6 +1130,18 @@ var MovilService = /** @class */ (function () {
         return this.http.get(this.movilUrl, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
             console.log('Obteniendo Moviles');
+        }));
+    };
+    MovilService.prototype.createMovil = function (movil) {
+        return this.http.post(this.movilUrl, movil, this.getHttpOpts())
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
+            console.log('Creando Movil');
+        }));
+    };
+    MovilService.prototype.updateMovil = function (movil) {
+        return this.http.put(this.movilUrl + movil._id, movil, this.getHttpOpts())
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
+            console.log('Actualizando Movil');
         }));
     };
     MovilService.prototype.deleteMovil = function (movId) {
@@ -1513,6 +1547,127 @@ var AccFormComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/components/add-movil-form/add-movil-form.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/shared/components/add-movil-form/add-movil-form.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title class=\"title\">{{ 'admin.moviles' | translate }}</h1>\n<div mat-dialog-content>\n  <p>{{ 'orderFormHint' | translate }}</p>\n  <form #movilForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" >\n    <div>\n      <mat-form-field class=\"full-width-input\" class=\"form-field-order\">\n        <input matInput type=\"text\" placeholder=\"{{'form.nameInput' | translate}}\" class=\"order__input\" id=\"nombre\" required [(ngModel)]=\"movil.nombre\" name=\"nombre\"  #nombre=\"ngModel\">\n        <mat-error [hidden]=\"!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)\">\n          {{'form-error.nameInputError' | translate}}\n        </mat-error>\n      </mat-form-field>\n    </div>\n    <div>\n      <mat-form-field class=\"full-width-input\" class=\"form-field-order\">\n        <input matInput type=\"text\" placeholder=\"{{'form.licenseInput' | translate}}\" class=\"order__input\" id=\"patente\" required [(ngModel)]=\"movil.patente\" name=\"patente\" [disabled]=\"isUpdate\"  #patente=\"ngModel\">\n        <mat-error [hidden]=\"!(!patente.valid  && patente.touched) || !(!patente.touched && formSubmitAttempt)\">\n          {{'form-error.licenseInputError' | translate}}\n        </mat-error>\n      </mat-form-field>\n    </div>\n    <div>\n      <mat-form-field class=\"full-width-input\" class=\"form-field-order\">\n        <input matInput type=\"number\" placeholder=\"{{'form.weightInput' | translate}}\" class=\"login__input\" id=\"peso\" required [(ngModel)]=\"movil.peso\" name=\"peso\" #peso=\"ngModel\">\n        <mat-error [hidden]=\"!(!peso.valid  && peso.touched) || !(!peso.touched && formSubmitAttempt)\">\n          {{'form-error.weightInputError' | translate}}\n        </mat-error>\n      </mat-form-field>\n    </div>\n  </form>\n</div>\n<div mat-dialog-actions class=\"btn-order\">\n  <button mat-button (click)=\"onNoClick()\">{{ 'cancelBtn' | translate }}</button>\n  <button mat-button (click)=\"onSubmit()\" cdkFocusInitial [disabled]=\"!movilForm.form.valid\">{{'addBtn' | translate }}</button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/add-movil-form/add-movil-form.component.scss":
+/*!********************************************************************************!*\
+  !*** ./src/app/shared/components/add-movil-form/add-movil-form.component.scss ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".title {\n  text-align: center; }\n\n.btn-order {\n  padding-left: 25%; }\n\n.form-field-order {\n  width: 100%; }\n\n.form-field-order .order__input {\n    width: 100%; }\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/shared/components/add-movil-form/add-movil-form.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: AddMovilFormComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddMovilFormComponent", function() { return AddMovilFormComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/utils.helper */ "./src/app/shared/helpers/utils.helper.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Movil */ "./src/app/core/models/Movil.ts");
+/* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+var AddMovilFormComponent = /** @class */ (function () {
+    function AddMovilFormComponent(dialogRef, data, movilService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.movilService = movilService;
+        this.created = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    AddMovilFormComponent.prototype.ngOnInit = function () {
+        this.movil = this.data ? lodash__WEBPACK_IMPORTED_MODULE_3__["cloneDeep"](this.data.movilModel) : new _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__["Movil"]();
+        this.isUpdate = this.data && this.data.movilModel ? true : false;
+    };
+    AddMovilFormComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    AddMovilFormComponent.prototype.onSubmit = function () {
+        this.showError = false;
+        if (!this.isUpdate) {
+            this.createMovil();
+        }
+        else {
+            this.updateMovil();
+        }
+    };
+    AddMovilFormComponent.prototype.createMovil = function () {
+        var _this = this;
+        this.movilService.createMovil(this.movil).subscribe(function (data) {
+            _this.created.emit(_this.movil);
+            _this.dialogRef.close();
+        }, function (error) {
+            console.log('ALGO SE CAGO');
+            _this.formSubmitAttempt = true;
+        });
+    };
+    AddMovilFormComponent.prototype.updateMovil = function () {
+        var _this = this;
+        this.movilService.updateMovil(this.movil).subscribe(function (data) {
+            _this.created.emit(_this.movil);
+            _this.dialogRef.close();
+        }, function (error) {
+            console.log('ALGO SE CAGO');
+            _this.formSubmitAttempt = true;
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], AddMovilFormComponent.prototype, "created", void 0);
+    AddMovilFormComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add-movil-form',
+            template: __webpack_require__(/*! ./add-movil-form.component.html */ "./src/app/shared/components/add-movil-form/add-movil-form.component.html"),
+            styles: [__webpack_require__(/*! ./add-movil-form.component.scss */ "./src/app/shared/components/add-movil-form/add-movil-form.component.scss")],
+            animations: [_helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_5__["MovilService"]])
+    ], AddMovilFormComponent);
+    return AddMovilFormComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/components/add-order-form/add-order-form.component.html":
 /*!********************************************************************************!*\
   !*** ./src/app/shared/components/add-order-form/add-order-form.component.html ***!
@@ -1548,11 +1703,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/utils.helper */ "./src/app/shared/helpers/utils.helper.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _core_models_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Order */ "./src/app/core/models/Order.ts");
-/* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _core_models_Order__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/models/Order */ "./src/app/core/models/Order.ts");
+/* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1571,19 +1725,15 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var AddOrderFormComponent = /** @class */ (function () {
-    function AddOrderFormComponent(dialogRef, data, fb, orderService) {
+    function AddOrderFormComponent(dialogRef, data, orderService) {
         this.dialogRef = dialogRef;
         this.data = data;
-        this.fb = fb;
         this.orderService = orderService;
         this.created = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     AddOrderFormComponent.prototype.ngOnInit = function () {
-        // @ts-ignore
-        this.orden = this.data ? lodash__WEBPACK_IMPORTED_MODULE_6__["cloneDeep"](this.data.ordenModel) : new _core_models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
-        // @ts-ignore
+        this.orden = this.data ? lodash__WEBPACK_IMPORTED_MODULE_5__["cloneDeep"](this.data.ordenModel) : new _core_models_Order__WEBPACK_IMPORTED_MODULE_3__["Order"]();
         this.isUpdate = this.data && this.data.ordenModel ? true : false;
     };
     AddOrderFormComponent.prototype.onNoClick = function () {
@@ -1630,8 +1780,7 @@ var AddOrderFormComponent = /** @class */ (function () {
             animations: [_helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
-            _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"]])
     ], AddOrderFormComponent);
     return AddOrderFormComponent;
 }());
@@ -1962,7 +2111,7 @@ var LoginFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"orders-table mat-elevation-z8\"  *ngIf=\"dataSource && dataSource.data.length >= 0; else emptyTable\">\n\n  <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"sortData($event)\">\n\n    <ng-container matColumnDef=\"patente\">\n      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'moviles-table.id' | translate }} </mat-header-cell>\n      <mat-cell  *matCellDef=\"let movil\"> {{movil.patente}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"conductor\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.driver' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\"> {{movil.nombre }} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"capacidad\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.weight' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\"> {{movil.peso}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"acciones\">\n      <mat-header-cell *matHeaderCellDef></mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\">\n        <button mat-button color=\"accent\" >\n          <i class=\"material-icons\">\n            create\n          </i></button>\n        <button mat-button color=\"warn\" (click)=\"deleteMovil(movil._id)\">\n          <i class=\"material-icons\">\n            delete\n          </i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let movil; columns: displayedColumns;\"></mat-row>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5]\"></mat-paginator>\n</div>\n\n<ng-template #emptyTable>\n  <div class=\"center-loading\">\n    <mat-spinner [diameter]=\"100\"></mat-spinner>\n  </div>\n</ng-template>\n"
+module.exports = "<div class=\"orders-table mat-elevation-z8\"  *ngIf=\"dataSource && dataSource.data.length >= 0; else emptyTable\">\n\n  <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"sortData($event)\">\n\n    <ng-container matColumnDef=\"patente\">\n      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'moviles-table.id' | translate }} </mat-header-cell>\n      <mat-cell  *matCellDef=\"let movil\"> {{movil.patente}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"conductor\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.driver' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\"> {{movil.nombre }} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"capacidad\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'moviles-table.weight' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\"> {{movil.peso}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"acciones\">\n      <mat-header-cell *matHeaderCellDef></mat-header-cell>\n      <mat-cell *matCellDef=\"let movil\">\n        <button mat-button color=\"accent\" (click)=\"openDialog(movil)\">\n          <i class=\"material-icons\">\n            create\n          </i></button>\n        <button mat-button color=\"warn\" (click)=\"deleteMovil(movil._id)\">\n          <i class=\"material-icons\">\n            delete\n          </i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let movil; columns: displayedColumns;\"></mat-row>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5]\"></mat-paginator>\n</div>\n\n<ng-template #emptyTable>\n  <div class=\"center-loading\">\n    <mat-spinner [diameter]=\"100\"></mat-spinner>\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -1990,7 +2139,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
-/* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
+/* harmony import */ var _core_models_Movil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/models/Movil */ "./src/app/core/models/Movil.ts");
+/* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
+/* harmony import */ var _add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2004,6 +2155,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var MovilesTableComponent = /** @class */ (function () {
     function MovilesTableComponent(movilService, snackBar, dialog) {
         this.movilService = movilService;
@@ -2011,6 +2164,12 @@ var MovilesTableComponent = /** @class */ (function () {
         this.dialog = dialog;
         this.displayedColumns = ['patente', 'conductor', 'capacidad', 'acciones'];
     }
+    MovilesTableComponent.prototype.ngOnChanges = function (changes) {
+        // @ts-ignore
+        if (changes.movil.currentValue !== changes.movil.previousValue) {
+            this.getAllMoviles();
+        }
+    };
     MovilesTableComponent.prototype.ngOnInit = function () {
         this.getAllMoviles();
     };
@@ -2052,6 +2211,20 @@ var MovilesTableComponent = /** @class */ (function () {
             console.log('ALGO SE CAGO');
         });
     };
+    MovilesTableComponent.prototype.openDialog = function (movil) {
+        var _this = this;
+        var dialogRef = this.dialog.open(_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_5__["AddMovilFormComponent"], {
+            width: '400px',
+            data: { movilModel: movil }
+        });
+        var sub = dialogRef.componentInstance.created.subscribe(function (newMovil) {
+            _this.openSnackBar('El movil de ' + newMovil.nombre + ' ha sido actualizado');
+            _this.getAllMoviles();
+        });
+        dialogRef.afterClosed().subscribe(function () {
+            sub.unsubscribe();
+        });
+    };
     MovilesTableComponent.prototype.openSnackBar = function (msg) {
         this.snackBar.open(msg, 'X', {
             duration: 5000,
@@ -2070,6 +2243,10 @@ var MovilesTableComponent = /** @class */ (function () {
             console.log('ALGO SE CAGO');
         });
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _core_models_Movil__WEBPACK_IMPORTED_MODULE_3__["Movil"])
+    ], MovilesTableComponent.prototype, "movil", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"])
@@ -2096,7 +2273,7 @@ var MovilesTableComponent = /** @class */ (function () {
                 ]),
             ]
         }),
-        __metadata("design:paramtypes", [_core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_3__["MovilService"],
+        __metadata("design:paramtypes", [_core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_4__["MovilService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], MovilesTableComponent);
@@ -2176,8 +2353,6 @@ var OrdersTableComponent = /** @class */ (function () {
     OrdersTableComponent.prototype.ngOnChanges = function (changes) {
         // @ts-ignore
         if (changes.order.currentValue !== changes.order.previousValue) {
-            // @ts-ignore
-            console.log(JSON.stringify(changes.order.currentValue));
             this.getAllOrders();
         }
     };
@@ -2795,7 +2970,7 @@ var Error404PageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" >{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" >{{'addUserBtn' | translate }}</button>\n    <app-users-table></app-users-table>\n  </div>\n</div>\n"
+module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openDialog()\">{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table [movil]=\"movil\"></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" >{{'addUserBtn' | translate }}</button>\n    <app-users-table></app-users-table>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2822,9 +2997,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeAdminPageComponent", function() { return HomeAdminPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/utils.helper */ "./src/app/shared/helpers/utils.helper.ts");
-/* harmony import */ var _components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/add-order-form/add-order-form.component */ "./src/app/shared/components/add-order-form/add-order-form.component.ts");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _core_models_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Order */ "./src/app/core/models/Order.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
+/* harmony import */ var _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Movil */ "./src/app/core/models/Movil.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2846,16 +3021,16 @@ var HomeAdminPageComponent = /** @class */ (function () {
         this.showTable = true;
     }
     HomeAdminPageComponent.prototype.ngOnInit = function () {
-        this.order = new _core_models_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
+        this.movil = new _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__["Movil"]();
     };
     HomeAdminPageComponent.prototype.openDialog = function () {
         var _this = this;
-        var dialogRef = this.dialog.open(_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_2__["AddOrderFormComponent"], {
+        var dialogRef = this.dialog.open(_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_3__["AddMovilFormComponent"], {
             width: '400px'
         });
-        var sub = dialogRef.componentInstance.created.subscribe(function (orderCreated) {
-            _this.order = orderCreated;
-            _this.snackBar.open('La orden ha sido creada', 'X', {
+        var sub = dialogRef.componentInstance.created.subscribe(function (newMovil) {
+            _this.movil = newMovil;
+            _this.snackBar.open('El movil ha sido creado', 'X', {
                 duration: 4000,
             });
         });
@@ -2870,8 +3045,8 @@ var HomeAdminPageComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./home-admin-page.component.scss */ "./src/app/shared/pages/home-admin-page/home-admin-page.component.scss")],
             animations: [_helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], HomeAdminPageComponent);
     return HomeAdminPageComponent;
 }());
@@ -3175,12 +3350,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_home_admin_page_home_admin_page_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pages/home-admin-page/home-admin-page.component */ "./src/app/shared/pages/home-admin-page/home-admin-page.component.ts");
 /* harmony import */ var _components_moviles_table_moviles_table_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/moviles-table/moviles-table.component */ "./src/app/shared/components/moviles-table/moviles-table.component.ts");
 /* harmony import */ var _components_users_table_users_table_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/users-table/users-table.component */ "./src/app/shared/components/users-table/users-table.component.ts");
+/* harmony import */ var _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -3227,6 +3404,7 @@ var SharedModule = /** @class */ (function () {
                 _pages_my_info_page_my_info_page_component__WEBPACK_IMPORTED_MODULE_20__["MyInfoPageComponent"],
                 _components_login_form_login_form_component__WEBPACK_IMPORTED_MODULE_11__["LoginFormComponent"],
                 _components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_18__["AddOrderFormComponent"],
+                _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__["AddMovilFormComponent"],
                 _components_create_acc_form_create_acc_form_component__WEBPACK_IMPORTED_MODULE_12__["CreateAccFormComponent"],
                 _components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"],
                 _components_orders_table_orders_table_component__WEBPACK_IMPORTED_MODULE_17__["OrdersTableComponent"],
@@ -3249,6 +3427,7 @@ var SharedModule = /** @class */ (function () {
                 _components_login_form_login_form_component__WEBPACK_IMPORTED_MODULE_11__["LoginFormComponent"],
                 _pages_my_info_page_my_info_page_component__WEBPACK_IMPORTED_MODULE_20__["MyInfoPageComponent"],
                 _components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_18__["AddOrderFormComponent"],
+                _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__["AddMovilFormComponent"],
                 _components_create_acc_form_create_acc_form_component__WEBPACK_IMPORTED_MODULE_12__["CreateAccFormComponent"],
                 _components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"],
                 _components_orders_table_orders_table_component__WEBPACK_IMPORTED_MODULE_17__["OrdersTableComponent"],
@@ -3335,7 +3514,7 @@ module.exports = webpackAsyncContext;
 /*! exports provided: companyName, ordenesTitle, orderTitle, orderFormHint, loginError, loginBtn, addOrderBtn, addUserBtn, addMovilBtn, addBtn, cancelBtn, alreadyHaveAccBtn, createAccBtn, createAccFormBtn, createAccMsg, alreadyHaveAccMsg, notHaveOrdersMsg, createAccError, form, form-error, admin, order, orders-table, users-table, moviles-table, user-menu, acc-form, default */
 /***/ (function(module) {
 
-module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
+module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
 
 /***/ }),
 

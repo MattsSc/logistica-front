@@ -7,8 +7,7 @@ import {OrderService} from '../../../core/services/order/order.service';
 import * as _ from 'lodash';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  ordenModel: Order;
 }
 
 @Component({
@@ -30,15 +29,11 @@ export class AddOrderFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddOrderFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private fb: FormBuilder,
     private orderService: OrderService) {}
 
   ngOnInit() {
-    // @ts-ignore
     this.orden = this.data ? _.cloneDeep(this.data.ordenModel) : new Order();
-    // @ts-ignore
     this.isUpdate = this.data && this.data.ordenModel  ? true : false;
-
   }
 
   onNoClick(): void {
