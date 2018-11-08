@@ -67,7 +67,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
 
     const sub = instance.created.subscribe((userUpdated) => {
       dialogRef.close();
-      this.openSnackBar('El usuario ' +  userUpdated.nombre + ' ha sido actualizado');
+      this.openSnackBar('El usuario ' +  userUpdated.nombre + ' ha sido creado.');
       this.getAllUsers();
     });
 

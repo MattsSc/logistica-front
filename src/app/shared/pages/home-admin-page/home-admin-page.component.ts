@@ -46,7 +46,7 @@ export class HomeAdminPageComponent implements OnInit {
     });
   }
 
-  openUserDialog(user: User): void {
+  openUserDialog(): void {
     const dialogRef = this.dialog.open(AccFormComponent, {
       width: '1200px'
     });

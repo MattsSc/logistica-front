@@ -2635,7 +2635,7 @@ var UsersTableComponent = /** @class */ (function () {
         instance.admin = true;
         var sub = instance.created.subscribe(function (userUpdated) {
             dialogRef.close();
-            _this.openSnackBar('El usuario ' + userUpdated.nombre + ' ha sido actualizado');
+            _this.openSnackBar('El usuario ' + userUpdated.nombre + ' ha sido creado.');
             _this.getAllUsers();
         });
         dialogRef.afterClosed().subscribe(function () {
@@ -3076,7 +3076,7 @@ var HomeAdminPageComponent = /** @class */ (function () {
             sub.unsubscribe();
         });
     };
-    HomeAdminPageComponent.prototype.openUserDialog = function (user) {
+    HomeAdminPageComponent.prototype.openUserDialog = function () {
         var _this = this;
         var dialogRef = this.dialog.open(_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_5__["AccFormComponent"], {
             width: '1200px'
