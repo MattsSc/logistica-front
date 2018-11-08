@@ -58,7 +58,7 @@ export class UserService {
 
   updateUser(user: User): Observable<any> {
     if (user.email !== '' && user.password !== '' ) {
-      return this.http.put<any>(this.userUrl + this.authService.getToken(), user, this.getHttpOpts())
+      return this.http.put<any>(this.userUrl + user._id, user, this.getHttpOpts())
         .pipe(
           tap(() => {
             console.log('Cuenta editada');

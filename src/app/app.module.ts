@@ -17,6 +17,7 @@ import {AddOrderFormComponent} from './shared/components/add-order-form/add-orde
 import {OrderService} from './core/services/order/order.service';
 import {MovilService} from './core/services/movil/movil.service';
 import {AddMovilFormComponent} from './shared/components/add-movil-form/add-movil-form.component';
+import {AccFormComponent} from './shared/components/acc-form/acc-form.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,7 @@ import {AddMovilFormComponent} from './shared/components/add-movil-form/add-movi
   declarations: [
     AppComponent
   ],
-  entryComponents: [ AddOrderFormComponent, AddMovilFormComponent ],
+  entryComponents: [ AddOrderFormComponent, AddMovilFormComponent, AccFormComponent ],
   providers: [
     {provide: APP_CONFIG, useValue: AppConfig}, AuthService, UserService, MovilService, OrderService, AuthGuard, CookieService
   ],

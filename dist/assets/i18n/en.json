@@ -25,6 +25,7 @@
   "form":{
     "userInput": "User",
     "licenseInput": "License plate",
+    "prefixInput": "Prefix file",
     "passInput": "Password",
     "emailInput": "E-mail",
     "dniInput": "D.N.I.",

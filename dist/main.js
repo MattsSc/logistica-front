@@ -550,12 +550,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
 /* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
 /* harmony import */ var _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
+/* harmony import */ var _shared_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/components/acc-form/acc-form.component */ "./src/app/shared/components/acc-form/acc-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -600,7 +602,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]
             ],
-            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"], _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__["AddMovilFormComponent"]],
+            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"], _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__["AddMovilFormComponent"], _shared_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"]],
             providers: [
                 { provide: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["APP_CONFIG"], useValue: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"] }, _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"], _core_services_user_user_service__WEBPACK_IMPORTED_MODULE_13__["UserService"], _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__["MovilService"], _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_16__["OrderService"], _core_services_auth_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__["CookieService"]
             ],
@@ -1391,7 +1393,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.updateUser = function (user) {
         if (user.email !== '' && user.password !== '') {
-            return this.http.put(this.userUrl + this.authService.getToken(), user, this.getHttpOpts())
+            return this.http.put(this.userUrl + user._id, user, this.getHttpOpts())
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
                 console.log('Cuenta editada');
             }));
@@ -1446,7 +1448,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #userForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" style=\"background-color: #424242\" class=\"acc-form\">\n  <mat-list>\n    <mat-list-item class=\"list-title\">\n      <h3>{{'acc-form.loginInfoHint' | translate }}</h3>\n    </mat-list-item>\n    <mat-list-item>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput type=\"email\" placeholder=\"{{'form.emailInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.email\" name=\"email\"  #email=\"ngModel\" [disabled]=\"isUpdate\">\n          <mat-error [hidden]=\"!(!email.valid  && email.touched) || !(!email.touched && formSubmitAttempt)\">\n            {{'form-error.emailInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\">\n          <input matInput type=\"password\" class=\"acc__input\" placeholder=\"{{'form.passInput' | translate}}\"  required [(ngModel)]=\"user.password\" name=\"password\"  #password=\"ngModel\">\n          <mat-error [hidden]=\"!(!password.valid  && password.touched) || !(!password.touched && formSubmitAttempt)\">\n            {{'form-error.passInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-divider class=\"divider-form\"></mat-divider>\n    <mat-list-item  class=\"list-title\">\n      <h3>{{'acc-form.personalInfoHint' | translate }}</h3>\n    </mat-list-item>\n    <mat-list-item>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.nameInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.nombre\" name=\"name\"  #nombre=\"ngModel\">\n          <mat-error [hidden]=\"!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)\">\n            {{'form-error.nameInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.dniInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.dni\" name=\"dni\"  #dni=\"ngModel\">\n          <mat-error [hidden]=\"!(!dni.valid  && dni.touched) || !(!dni.touched && formSubmitAttempt)\">\n            {{'form-error.dniInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-list-item style=\"height: 100px\">\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.addressInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.direccion\" name=\"dirr\"  #dirr=\"ngModel\">\n          <mat-error [hidden]=\"!(!dirr.valid  && dirr.touched) || !(!dirr.touched && formSubmitAttempt)\">\n            {{'form-error.addressInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.cityInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.localidad\" name=\"localidad\"  #localidad=\"ngModel\">\n          <mat-error [hidden]=\"!(!localidad.valid  && localidad.touched) || !(!localidad.touched && formSubmitAttempt)\">\n            {{'form-error.cityInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-divider class=\"divider-form\"></mat-divider>\n    <mat-list-item>\n      <button mat-raised-button color=\"primary\" class=\"acc__submit\"  [disabled]=\"!userForm.form.valid\">{{'loginBtn' | translate}}</button>\n    </mat-list-item>\n  </mat-list>\n </form>\n"
+module.exports = "<form #userForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" style=\"background-color: #424242\" class=\"acc-form\">\n  <mat-list>\n    <mat-list-item class=\"list-title\">\n      <h3>{{'acc-form.loginInfoHint' | translate }}</h3>\n    </mat-list-item>\n    <mat-list-item>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput type=\"email\" placeholder=\"{{'form.emailInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.email\" name=\"email\"  #email=\"ngModel\" [disabled]=\"isUpdate\">\n          <mat-error [hidden]=\"!(!email.valid  && email.touched) || !(!email.touched && formSubmitAttempt)\">\n            {{'form-error.emailInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\">\n          <input matInput type=\"password\" class=\"acc__input\" placeholder=\"{{'form.passInput' | translate}}\"  required [(ngModel)]=\"user.password\" name=\"password\"  #password=\"ngModel\">\n          <mat-error [hidden]=\"!(!password.valid  && password.touched) || !(!password.touched && formSubmitAttempt)\">\n            {{'form-error.passInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-list-item>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput type=\"text\" placeholder=\"{{'form.prefixInput' | translate}}\" class=\"acc__input\" [(ngModel)]=\"user.prefix_file\" name=\"prefix\"  #prefix=\"ngModel\" *ngIf=\"admin\">\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-divider class=\"divider-form\"></mat-divider>\n    <mat-list-item  class=\"list-title\">\n      <h3>{{'acc-form.personalInfoHint' | translate }}</h3>\n    </mat-list-item>\n    <mat-list-item>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.nameInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.nombre\" name=\"name\"  #nombre=\"ngModel\">\n          <mat-error [hidden]=\"!(!nombre.valid  && nombre.touched) || !(!nombre.touched && formSubmitAttempt)\">\n            {{'form-error.nameInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.dniInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.dni\" name=\"dni\"  #dni=\"ngModel\">\n          <mat-error [hidden]=\"!(!dni.valid  && dni.touched) || !(!dni.touched && formSubmitAttempt)\">\n            {{'form-error.dniInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-list-item style=\"height: 100px\">\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.addressInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.direccion\" name=\"dirr\"  #dirr=\"ngModel\">\n          <mat-error [hidden]=\"!(!dirr.valid  && dirr.touched) || !(!dirr.touched && formSubmitAttempt)\">\n            {{'form-error.addressInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"acc-row\">\n        <mat-form-field class=\"acc-input\" >\n          <input matInput placeholder=\"{{'form.cityInput' | translate}}\" class=\"acc__input\" required [(ngModel)]=\"user.localidad\" name=\"localidad\"  #localidad=\"ngModel\">\n          <mat-error [hidden]=\"!(!localidad.valid  && localidad.touched) || !(!localidad.touched && formSubmitAttempt)\">\n            {{'form-error.cityInputError' | translate}}\n          </mat-error>\n        </mat-form-field>\n      </div>\n    </mat-list-item>\n    <mat-divider class=\"divider-form\"></mat-divider>\n    <mat-list-item>\n      <button mat-raised-button color=\"primary\" class=\"acc__submit\"  [disabled]=\"!userForm.form.valid\">{{'loginBtn' | translate}}</button>\n    </mat-list-item>\n  </mat-list>\n </form>\n"
 
 /***/ }),
 
@@ -1495,15 +1497,11 @@ var AccFormComponent = /** @class */ (function () {
     }
     AccFormComponent.prototype.ngOnInit = function () {
         this.user = this.userModel ? this.userModel : new _core_models_User__WEBPACK_IMPORTED_MODULE_3__["User"]();
+        this.admin = this.admin || false;
         this.isUpdate = !!this.userModel;
     };
     AccFormComponent.prototype.onSubmit = function () {
-        if (!this.isUpdate) {
-            this.createUser();
-        }
-        else {
-            this.updateUser();
-        }
+        !this.isUpdate ? this.createUser() : this.updateUser();
     };
     AccFormComponent.prototype.createUser = function () {
         var _this = this;
@@ -1527,6 +1525,10 @@ var AccFormComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", _core_models_User__WEBPACK_IMPORTED_MODULE_3__["User"])
     ], AccFormComponent.prototype, "userModel", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], AccFormComponent.prototype, "admin", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
@@ -2550,7 +2552,7 @@ var SpinnerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"orders-table mat-elevation-z8\"  *ngIf=\"dataSource && dataSource.data.length >= 0; else emptyTable\">\n\n  <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"sortData($event)\">\n\n    <ng-container matColumnDef=\"email\">\n      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'users-table.email' | translate }} </mat-header-cell>\n      <mat-cell  *matCellDef=\"let user\"> {{user.email}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"prefijo\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.prefix' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let user\"> {{user.prefix_file }} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"estado\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.status' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let user\"> Activo </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"acciones\">\n      <mat-header-cell *matHeaderCellDef></mat-header-cell>\n      <mat-cell *matCellDef=\"let user\">\n        <button mat-button color=\"accent\" >\n          <i class=\"material-icons\">\n            create\n          </i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let user; columns: displayedColumns;\"></mat-row>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5]\"></mat-paginator>\n</div>\n\n<ng-template #emptyTable>\n  <div class=\"user-center-loading\">\n    <mat-spinner [diameter]=\"100\"></mat-spinner>\n  </div>\n</ng-template>\n"
+module.exports = "<div class=\"orders-table mat-elevation-z8\"  *ngIf=\"dataSource && dataSource.data.length >= 0; else emptyTable\">\n\n  <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"sortData($event)\">\n\n    <ng-container matColumnDef=\"email\">\n      <mat-header-cell mat-sort-header *matHeaderCellDef > {{'users-table.email' | translate }} </mat-header-cell>\n      <mat-cell  *matCellDef=\"let user\"> {{user.email}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"prefijo\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.prefix' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let user\"> {{user.prefix_file }} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"estado\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.status' | translate }}  </mat-header-cell>\n      <mat-cell *matCellDef=\"let user\"> Activo </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"acciones\">\n      <mat-header-cell *matHeaderCellDef></mat-header-cell>\n      <mat-cell *matCellDef=\"let user\">\n        <button mat-button color=\"accent\" (click)=\"openDialog(user)\">\n          <i class=\"material-icons\">\n            create\n          </i></button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let user; columns: displayedColumns;\"></mat-row>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5]\"></mat-paginator>\n</div>\n\n<ng-template #emptyTable>\n  <div class=\"user-center-loading\">\n    <mat-spinner [diameter]=\"100\"></mat-spinner>\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -2578,7 +2580,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
-/* harmony import */ var _core_services_user_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/services/user/user.service */ "./src/app/core/services/user/user.service.ts");
+/* harmony import */ var _core_models_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/models/User */ "./src/app/core/models/User.ts");
+/* harmony import */ var _core_services_user_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/services/user/user.service */ "./src/app/core/services/user/user.service.ts");
+/* harmony import */ var _acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../acc-form/acc-form.component */ "./src/app/shared/components/acc-form/acc-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2592,6 +2596,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var UsersTableComponent = /** @class */ (function () {
     function UsersTableComponent(userService, snackBar, dialog) {
         this.userService = userService;
@@ -2600,9 +2606,13 @@ var UsersTableComponent = /** @class */ (function () {
         this.displayedColumns = ['email', 'prefijo', 'estado', 'acciones'];
     }
     UsersTableComponent.prototype.ngOnInit = function () {
-        this.getAllMoviles();
+        this.getAllUsers();
     };
     UsersTableComponent.prototype.ngOnChanges = function (changes) {
+        // @ts-ignore
+        if (changes.user.currentValue !== changes.user.previousValue) {
+            this.getAllUsers();
+        }
     };
     Object.defineProperty(UsersTableComponent.prototype, "matPaginator", {
         set: function (mp) {
@@ -2614,6 +2624,28 @@ var UsersTableComponent = /** @class */ (function () {
     });
     UsersTableComponent.prototype.setDataSourceAttributes = function () {
         this.dataSource.paginator = this.paginator;
+    };
+    UsersTableComponent.prototype.openDialog = function (user) {
+        var _this = this;
+        var dialogRef = this.dialog.open(_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_5__["AccFormComponent"], {
+            width: '1200px'
+        });
+        var instance = dialogRef.componentInstance;
+        instance.userModel = user;
+        instance.admin = true;
+        var sub = instance.created.subscribe(function (userUpdated) {
+            dialogRef.close();
+            _this.openSnackBar('El usuario ' + userUpdated.nombre + ' ha sido actualizado');
+            _this.getAllUsers();
+        });
+        dialogRef.afterClosed().subscribe(function () {
+            sub.unsubscribe();
+        });
+    };
+    UsersTableComponent.prototype.openSnackBar = function (msg) {
+        this.snackBar.open(msg, 'X', {
+            duration: 5000,
+        });
     };
     UsersTableComponent.prototype.sortData = function (sort) {
         var _this = this;
@@ -2635,7 +2667,7 @@ var UsersTableComponent = /** @class */ (function () {
     UsersTableComponent.prototype.compare = function (a, b, isAsc) {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     };
-    UsersTableComponent.prototype.getAllMoviles = function () {
+    UsersTableComponent.prototype.getAllUsers = function () {
         var _this = this;
         this.userService.getUsers().subscribe(function (data) {
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](data);
@@ -2645,6 +2677,10 @@ var UsersTableComponent = /** @class */ (function () {
             console.log('ALGO SE CAGO');
         });
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _core_models_User__WEBPACK_IMPORTED_MODULE_3__["User"])
+    ], UsersTableComponent.prototype, "user", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"])
@@ -2671,7 +2707,7 @@ var UsersTableComponent = /** @class */ (function () {
                 ]),
             ]
         }),
-        __metadata("design:paramtypes", [_core_services_user_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+        __metadata("design:paramtypes", [_core_services_user_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], UsersTableComponent);
@@ -2970,7 +3006,7 @@ var Error404PageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openDialog()\">{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table [movil]=\"movil\"></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" >{{'addUserBtn' | translate }}</button>\n    <app-users-table></app-users-table>\n  </div>\n</div>\n"
+module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openMovilDialog()\">{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table [movil]=\"movil\"></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openUserDialog()\">{{'addUserBtn' | translate }}</button>\n    <app-users-table [user]=\"user\"></app-users-table>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3000,6 +3036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
 /* harmony import */ var _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/models/Movil */ "./src/app/core/models/Movil.ts");
+/* harmony import */ var _components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/acc-form/acc-form.component */ "./src/app/shared/components/acc-form/acc-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3014,6 +3051,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HomeAdminPageComponent = /** @class */ (function () {
     function HomeAdminPageComponent(dialog, snackBar) {
         this.dialog = dialog;
@@ -3023,7 +3061,7 @@ var HomeAdminPageComponent = /** @class */ (function () {
     HomeAdminPageComponent.prototype.ngOnInit = function () {
         this.movil = new _core_models_Movil__WEBPACK_IMPORTED_MODULE_4__["Movil"]();
     };
-    HomeAdminPageComponent.prototype.openDialog = function () {
+    HomeAdminPageComponent.prototype.openMovilDialog = function () {
         var _this = this;
         var dialogRef = this.dialog.open(_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_3__["AddMovilFormComponent"], {
             width: '400px'
@@ -3031,6 +3069,24 @@ var HomeAdminPageComponent = /** @class */ (function () {
         var sub = dialogRef.componentInstance.created.subscribe(function (newMovil) {
             _this.movil = newMovil;
             _this.snackBar.open('El movil ha sido creado', 'X', {
+                duration: 4000,
+            });
+        });
+        dialogRef.afterClosed().subscribe(function () {
+            sub.unsubscribe();
+        });
+    };
+    HomeAdminPageComponent.prototype.openUserDialog = function (user) {
+        var _this = this;
+        var dialogRef = this.dialog.open(_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_5__["AccFormComponent"], {
+            width: '1200px'
+        });
+        var instance = dialogRef.componentInstance;
+        instance.admin = true;
+        var sub = instance.created.subscribe(function (userUpdated) {
+            dialogRef.close();
+            _this.user = userUpdated;
+            _this.snackBar.open('El usuario ' + userUpdated.nombre + ' ha sido actualizado', 'X', {
                 duration: 4000,
             });
         });
@@ -3514,7 +3570,7 @@ module.exports = webpackAsyncContext;
 /*! exports provided: companyName, ordenesTitle, orderTitle, orderFormHint, loginError, loginBtn, addOrderBtn, addUserBtn, addMovilBtn, addBtn, cancelBtn, alreadyHaveAccBtn, createAccBtn, createAccFormBtn, createAccMsg, alreadyHaveAccMsg, notHaveOrdersMsg, createAccError, form, form-error, admin, order, orders-table, users-table, moviles-table, user-menu, acc-form, default */
 /***/ (function(module) {
 
-module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
+module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","prefixInput":"Prefijo Archivo","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
 
 /***/ }),
 

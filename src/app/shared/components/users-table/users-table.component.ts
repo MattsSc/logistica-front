@@ -1,8 +1,11 @@
-import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialog, Sort} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {User} from '../../../core/models/User';
 import {UserService} from '../../../core/services/user/user.service';
+import {Movil} from '../../../core/models/Movil';
+import {AddMovilFormComponent} from '../add-movil-form/add-movil-form.component';
+import {AccFormComponent} from '../acc-form/acc-form.component';
 
 
 @Component({
@@ -24,6 +27,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['email', 'prefijo', 'estado', 'acciones'];
   dataSource:  MatTableDataSource<User>;
   sortedData: Array<User>;
+  @Input() user: User;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -33,10 +37,14 @@ export class UsersTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.getAllMoviles();
+    this.getAllUsers();
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    // @ts-ignore
+    if (changes.user.currentValue !== changes.user.previousValue) {
+      this.getAllUsers();
+    }
   }
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
@@ -46,6 +54,32 @@ export class UsersTableComponent implements OnInit, OnChanges {
 
   setDataSourceAttributes(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  openDialog(user: User): void {
+    const dialogRef = this.dialog.open(AccFormComponent, {
+      width: '1200px'
+    });
+
+    const instance = dialogRef.componentInstance;
+    instance.userModel = user;
+    instance.admin = true;
+
+    const sub = instance.created.subscribe((userUpdated) => {
+      dialogRef.close();
+      this.openSnackBar('El usuario ' +  userUpdated.nombre + ' ha sido actualizado');
+      this.getAllUsers();
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+  }
+
+  private openSnackBar(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 5000,
+    });
   }
 
   sortData(sort: Sort) {
@@ -70,7 +104,7 @@ export class UsersTableComponent implements OnInit, OnChanges {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  private getAllMoviles(): void {
+  private getAllUsers(): void {
     this.userService.getUsers().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<User>(data);

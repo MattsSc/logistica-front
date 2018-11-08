@@ -19,6 +19,7 @@
   "createAccError": "Ha habido un error, intente mas tarde",
   "form":{
     "userInput": "Usuario",
+    "prefixInput": "Prefijo Archivo",
     "licenseInput": "Patente",
     "passInput": "Contraseña",
     "emailInput": "E-mail",
