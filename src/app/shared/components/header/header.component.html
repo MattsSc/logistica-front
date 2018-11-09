@@ -38,6 +38,10 @@
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.home' | translate}}</span>
                 </a>
+                <button *ngIf="isAdmin" mat-menu-item (click)="editOrderStatus()">
+                  <mat-icon>create</mat-icon>
+                  <span>{{'user-menu.editOrder' | translate}}</span>
+                </button>
                 <button mat-menu-item (click)="onLogout()">
                   <mat-icon>power_settings_new</mat-icon>
                   <span>{{'user-menu.logout' | translate}}</span>

@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="update-order-form">
+  <h3>{{'orderInfoHint' | translate }}</h3>
+  <div>
+    <mat-form-field class="full-width-input" class="form-field-up-order">
+      <input matInput type="number" placeholder="{{'form.orderIdInput' | translate}}" class="order__input" formControlName="orden_id" required>
+      <mat-error *ngIf="isFieldInvalid('orden_id')">
+        {{'form-error.orderIdInputError' | translate}}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width-input" class="form-field-up-order">
+      <mat-select formControlName="estado" required placeholder="{{'form.statusInput' | translate}}">
+        <mat-option value="NEW">Nueva</mat-option>
+        <mat-option value="ON_WAY">En camino</mat-option>
+        <mat-option value="DELIVERED">Entregada</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="message != null" class="msg-result">{{message}}</div>
+  <button mat-raised-button color="primary" class="login__submit" *ngIf="!submit">{{'updateBtn' | translate}}</button>
+  <div *ngIf="submit">
+    <mat-spinner [diameter]="40" class="login__submit" style="margin:10px auto;"></mat-spinner>
+  </div>
+ </form>

@@ -10,16 +10,20 @@
   "addMovilBtn": "Agregar Movil",
   "addBtn": "Agregar",
   "cancelBtn": "Cancelar",
+  "updateBtn": "Actualizar",
   "alreadyHaveAccBtn": "Volver atras",
   "createAccBtn": "Registrate",
   "createAccFormBtn": "Crear cuenta",
   "createAccMsg": "¿No tienes una cuenta?",
   "alreadyHaveAccMsg": "Ya tengo una cuenta",
   "notHaveOrdersMsg": "No posee ordenes",
+  "orderInfoHint": "Actualizar orden",
   "createAccError": "Ha habido un error, intente mas tarde",
   "form":{
     "userInput": "Usuario",
+    "orderIdInput": "Orden Id",
     "prefixInput": "Prefijo Archivo",
+    "statusInput": "Estado",
     "licenseInput": "Patente",
     "passInput": "Contraseña",
     "emailInput": "E-mail",
@@ -32,6 +36,7 @@
   },
   "form-error":{
     "userInputError": "Usuario es requerido",
+    "orderIdInputError": "Orden Id es requerido",
     "licenseInputError": "Patente requerida",
     "passInputError": "Contraseña es requerida",
     "emailInputError": "E-mail es requerido",
@@ -74,6 +79,7 @@
   "user-menu":{
     "information": "Mis datos",
     "home": "Mis ordenes",
+    "editOrder": "Actualizar orden",
     "admin": "Dashboard",
     "logout": "Cerrar sesion"
   },

@@ -12,10 +12,12 @@
   "addOrderBtn": "Add order",
   "addUserBtn": "Add User",
   "addMovilBtn": "Add Movil",
+  "updateBtn": "Update",
   "alreadyHaveAccMsg": "I have an account,",
   "createAccMsg": "Don't have an account?",
   "notHaveOrdersMsg": "You don't have any order",
   "createAccError": "Occurs an error, please try again later",
+  "orderInfoHint": "Update order",
   "loginError": "Invalid user and/or password",
   "admin":{
     "title": "Dashboard",
@@ -24,6 +26,8 @@
   },
   "form":{
     "userInput": "User",
+    "statusInput": "Status",
+    "orderIdInput": "Order Id",
     "licenseInput": "License plate",
     "prefixInput": "Prefix file",
     "passInput": "Password",
@@ -37,6 +41,7 @@
   },
   "form-error":{
     "licenseInputError": "License plate is required",
+    "orderIdInputError": "Order Id is required",
     "userInputError": "User is required",
     "passInputError": "Password is required",
     "nameInputError": "Name is required",
@@ -73,6 +78,7 @@
   },
   "user-menu":{
     "information": "My Information",
+    "editOrder": "Update order",
     "home": "My orders",
     "admin": "Dashboard",
     "logout": "Logout"

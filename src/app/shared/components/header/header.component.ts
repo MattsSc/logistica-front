@@ -6,6 +6,9 @@ import {ProgressBarService} from '../../../core/services/progress-bar.service';
 import {LocalStorage} from 'ngx-store';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../../core/services/auth/auth.service';
+import {AccFormComponent} from '../acc-form/acc-form.component';
+import {UpdateOrderFormComponent} from '../update-order-form/update-order-form.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +31,8 @@ export class HeaderComponent implements OnInit {
   constructor(@Inject(APP_CONFIG) appConfig: any,
               private progressBarService: ProgressBarService,
               private translateService: TranslateService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              public dialog: MatDialog) {
     this.appConfig = appConfig;
   }
 
@@ -47,6 +51,12 @@ export class HeaderComponent implements OnInit {
   changeLanguage(language: string): void {
     this.translateService.use(language).subscribe(() => {
       this.language = language;
+    });
+  }
+
+  editOrderStatus(): void {
+    const dialogRef = this.dialog.open(UpdateOrderFormComponent, {
+      width: '400px'
     });
   }
 

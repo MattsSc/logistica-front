@@ -551,12 +551,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/services/movil/movil.service */ "./src/app/core/services/movil/movil.service.ts");
 /* harmony import */ var _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
 /* harmony import */ var _shared_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/components/acc-form/acc-form.component */ "./src/app/shared/components/acc-form/acc-form.component.ts");
+/* harmony import */ var _shared_components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./shared/components/update-order-form/update-order-form.component */ "./src/app/shared/components/update-order-form/update-order-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -602,7 +604,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]
             ],
-            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"], _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__["AddMovilFormComponent"], _shared_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"]],
+            entryComponents: [_shared_components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_15__["AddOrderFormComponent"], _shared_components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_18__["AddMovilFormComponent"], _shared_components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"], _shared_components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_20__["UpdateOrderFormComponent"]],
             providers: [
                 { provide: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["APP_CONFIG"], useValue: _configs_app_config__WEBPACK_IMPORTED_MODULE_8__["AppConfig"] }, _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"], _core_services_user_user_service__WEBPACK_IMPORTED_MODULE_13__["UserService"], _core_services_movil_movil_service__WEBPACK_IMPORTED_MODULE_17__["MovilService"], _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_16__["OrderService"], _core_services_auth_auth_guard__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__["CookieService"]
             ],
@@ -1906,7 +1908,7 @@ var CreateAccFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"isLoggedIn$ | async\" class=\"mat-elevation-z6\">\n    <nav>\n        <div fxFlex fxLayout=\"row\" fxLayout.xs=\"column\" fxLayoutAlign=\"center center\">\n          <div fxFlex=\"40\" class=\"header-title\">\n            {{'companyName' | translate }}\n          </div>\n            <div fxFlex class=\"text--right\">\n              <button mat-icon-button [matMenuTriggerFor]=\"matmenu\">\n                <mat-icon>public</mat-icon>\n              </button>\n              <mat-menu #matmenu=\"matMenu\">\n                <button mat-menu-item (click)=\"changeLanguage('en')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        English\n                    </span>\n                </button>\n                <button mat-menu-item (click)=\"changeLanguage('es')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        Español\n                    </span>\n                </button>\n              </mat-menu>\n              <button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\n                <mat-icon>person</mat-icon>\n              </button>\n              <mat-menu #userMenu=\"matMenu\">\n                <a mat-menu-item routerLink=\"{{myAcc.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.information' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{dashboard.link}}\" *ngIf=\"isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.admin' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{home.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.home' | translate}}</span>\n                </a>\n                <button mat-menu-item (click)=\"onLogout()\">\n                  <mat-icon>power_settings_new</mat-icon>\n                  <span>{{'user-menu.logout' | translate}}</span>\n                </button>\n              </mat-menu>\n            </div>\n        </div>\n    </nav>\n    <section class=\"progress-bar\">\n        <mat-progress-bar [color]=\"'primary'\" [mode]=\"progressBarMode\">\n        </mat-progress-bar>\n    </section>\n</header>\n"
+module.exports = "<header *ngIf=\"isLoggedIn$ | async\" class=\"mat-elevation-z6\">\n    <nav>\n        <div fxFlex fxLayout=\"row\" fxLayout.xs=\"column\" fxLayoutAlign=\"center center\">\n          <div fxFlex=\"40\" class=\"header-title\">\n            {{'companyName' | translate }}\n          </div>\n            <div fxFlex class=\"text--right\">\n              <button mat-icon-button [matMenuTriggerFor]=\"matmenu\">\n                <mat-icon>public</mat-icon>\n              </button>\n              <mat-menu #matmenu=\"matMenu\">\n                <button mat-menu-item (click)=\"changeLanguage('en')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        English\n                    </span>\n                </button>\n                <button mat-menu-item (click)=\"changeLanguage('es')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        Español\n                    </span>\n                </button>\n              </mat-menu>\n              <button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\n                <mat-icon>person</mat-icon>\n              </button>\n              <mat-menu #userMenu=\"matMenu\">\n                <a mat-menu-item routerLink=\"{{myAcc.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.information' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{dashboard.link}}\" *ngIf=\"isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.admin' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{home.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.home' | translate}}</span>\n                </a>\n                <button *ngIf=\"isAdmin\" mat-menu-item (click)=\"editOrderStatus()\">\n                  <mat-icon>create</mat-icon>\n                  <span>{{'user-menu.editOrder' | translate}}</span>\n                </button>\n                <button mat-menu-item (click)=\"onLogout()\">\n                  <mat-icon>power_settings_new</mat-icon>\n                  <span>{{'user-menu.logout' | translate}}</span>\n                </button>\n              </mat-menu>\n            </div>\n        </div>\n    </nav>\n    <section class=\"progress-bar\">\n        <mat-progress-bar [color]=\"'primary'\" [mode]=\"progressBarMode\">\n        </mat-progress-bar>\n    </section>\n</header>\n"
 
 /***/ }),
 
@@ -1939,6 +1941,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_progress_bar_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/services/progress-bar.service */ "./src/app/core/services/progress-bar.service.ts");
 /* harmony import */ var ngx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-store */ "./node_modules/ngx-store/ngx-store.js");
 /* harmony import */ var _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../core/services/auth/auth.service */ "./src/app/core/services/auth/auth.service.ts");
+/* harmony import */ var _update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../update-order-form/update-order-form.component */ "./src/app/shared/components/update-order-form/update-order-form.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1958,11 +1962,14 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(appConfig, progressBarService, translateService, authService) {
+    function HeaderComponent(appConfig, progressBarService, translateService, authService, dialog) {
         this.progressBarService = progressBarService;
         this.translateService = translateService;
         this.authService = authService;
+        this.dialog = dialog;
         this.language = 'es';
         this.appConfig = appConfig;
     }
@@ -1984,6 +1991,11 @@ var HeaderComponent = /** @class */ (function () {
             _this.language = language;
         });
     };
+    HeaderComponent.prototype.editOrderStatus = function () {
+        var dialogRef = this.dialog.open(_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_7__["UpdateOrderFormComponent"], {
+            width: '400px'
+        });
+    };
     HeaderComponent.prototype.onLogout = function () {
         this.authService.logout();
     };
@@ -2000,7 +2012,8 @@ var HeaderComponent = /** @class */ (function () {
         __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_configs_app_config__WEBPACK_IMPORTED_MODULE_3__["APP_CONFIG"])),
         __metadata("design:paramtypes", [Object, _core_services_progress_bar_service__WEBPACK_IMPORTED_MODULE_4__["ProgressBarService"],
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateService"],
-            _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
+            _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]])
     ], HeaderComponent);
     return HeaderComponent;
 }());
@@ -2545,6 +2558,107 @@ var SpinnerComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/components/update-order-form/update-order-form.component.html":
+/*!**************************************************************************************!*\
+  !*** ./src/app/shared/components/update-order-form/update-order-form.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\" class=\"update-order-form\">\n  <h3>{{'orderInfoHint' | translate }}</h3>\n  <div>\n    <mat-form-field class=\"full-width-input\" class=\"form-field-up-order\">\n      <input matInput type=\"number\" placeholder=\"{{'form.orderIdInput' | translate}}\" class=\"order__input\" formControlName=\"orden_id\" required>\n      <mat-error *ngIf=\"isFieldInvalid('orden_id')\">\n        {{'form-error.orderIdInputError' | translate}}\n      </mat-error>\n    </mat-form-field>\n  </div>\n  <div>\n    <mat-form-field class=\"full-width-input\" class=\"form-field-up-order\">\n      <mat-select formControlName=\"estado\" required placeholder=\"{{'form.statusInput' | translate}}\">\n        <mat-option value=\"NEW\">Nueva</mat-option>\n        <mat-option value=\"ON_WAY\">En camino</mat-option>\n        <mat-option value=\"DELIVERED\">Entregada</mat-option>\n      </mat-select>\n    </mat-form-field>\n  </div>\n  <div *ngIf=\"message != null\" class=\"msg-result\">{{message}}</div>\n  <button mat-raised-button color=\"primary\" class=\"login__submit\" *ngIf=\"!submit\">{{'updateBtn' | translate}}</button>\n  <div *ngIf=\"submit\">\n    <mat-spinner [diameter]=\"40\" class=\"login__submit\" style=\"margin:10px auto;\"></mat-spinner>\n  </div>\n </form>\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/update-order-form/update-order-form.component.scss":
+/*!**************************************************************************************!*\
+  !*** ./src/app/shared/components/update-order-form/update-order-form.component.scss ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".update-order-form {\n  background-color: #424242; }\n  .update-order-form h3 {\n    color: white;\n    text-align: center;\n    padding-top: 20px; }\n  .update-order-form .form-field-up-order {\n    width: 80%;\n    margin: 3% 3% 3% 10%; }\n  .update-order-form .msg-result {\n    padding-bottom: 16px;\n    text-align: center; }\n  .update-order-form .login__submit {\n    margin-left: 7.5rem; }\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/update-order-form/update-order-form.component.ts":
+/*!************************************************************************************!*\
+  !*** ./src/app/shared/components/update-order-form/update-order-form.component.ts ***!
+  \************************************************************************************/
+/*! exports provided: UpdateOrderFormComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateOrderFormComponent", function() { return UpdateOrderFormComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/utils.helper */ "./src/app/shared/helpers/utils.helper.ts");
+/* harmony import */ var _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../core/services/order/order.service */ "./src/app/core/services/order/order.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UpdateOrderFormComponent = /** @class */ (function () {
+    function UpdateOrderFormComponent(fb, orderService) {
+        this.fb = fb;
+        this.orderService = orderService;
+    }
+    UpdateOrderFormComponent.prototype.ngOnInit = function () {
+        this.submit = false;
+        this.message = null;
+        this.form = this.fb.group({
+            orden_id: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            estado: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
+    };
+    UpdateOrderFormComponent.prototype.isFieldInvalid = function (field) {
+        return ((!this.form.get(field).valid && this.form.get(field).touched) ||
+            (this.form.get(field).untouched && this.formSubmitAttempt));
+    };
+    UpdateOrderFormComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.message = null;
+        if (this.form.valid) {
+            this.submit = true;
+            this.orderService.updateOrder(this.form.value).subscribe(function (data) {
+                console.log('vamos');
+                _this.message = 'Orden actualizada';
+                _this.submit = false;
+            }, function (error) {
+                if (error.status === 423)
+                    _this.message = 'La orden no puede volver a estado anterior.';
+                else
+                    _this.message = 'Hubo un error, intente mas tarde';
+                _this.submit = false;
+            });
+        }
+    };
+    UpdateOrderFormComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-update-order-form',
+            template: __webpack_require__(/*! ./update-order-form.component.html */ "./src/app/shared/components/update-order-form/update-order-form.component.html"),
+            styles: [__webpack_require__(/*! ./update-order-form.component.scss */ "./src/app/shared/components/update-order-form/update-order-form.component.scss")],
+            animations: [_helpers_utils_helper__WEBPACK_IMPORTED_MODULE_1__["fadeInOut"]]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _core_services_order_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
+    ], UpdateOrderFormComponent);
+    return UpdateOrderFormComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/components/users-table/users-table.component.html":
 /*!**************************************************************************!*\
   !*** ./src/app/shared/components/users-table/users-table.component.html ***!
@@ -2901,6 +3015,7 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatSortModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatExpansionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatPaginatorModule"],
@@ -2916,6 +3031,7 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatProgressBarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatAutocompleteModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatGridListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatSnackBarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatProgressSpinnerModule"],
@@ -3407,12 +3523,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_moviles_table_moviles_table_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/moviles-table/moviles-table.component */ "./src/app/shared/components/moviles-table/moviles-table.component.ts");
 /* harmony import */ var _components_users_table_users_table_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/users-table/users-table.component */ "./src/app/shared/components/users-table/users-table.component.ts");
 /* harmony import */ var _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/add-movil-form/add-movil-form.component */ "./src/app/shared/components/add-movil-form/add-movil-form.component.ts");
+/* harmony import */ var _components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/update-order-form/update-order-form.component */ "./src/app/shared/components/update-order-form/update-order-form.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -3462,6 +3580,7 @@ var SharedModule = /** @class */ (function () {
                 _components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_18__["AddOrderFormComponent"],
                 _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__["AddMovilFormComponent"],
                 _components_create_acc_form_create_acc_form_component__WEBPACK_IMPORTED_MODULE_12__["CreateAccFormComponent"],
+                _components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_25__["UpdateOrderFormComponent"],
                 _components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"],
                 _components_orders_table_orders_table_component__WEBPACK_IMPORTED_MODULE_17__["OrdersTableComponent"],
                 _components_moviles_table_moviles_table_component__WEBPACK_IMPORTED_MODULE_22__["MovilesTableComponent"],
@@ -3483,7 +3602,9 @@ var SharedModule = /** @class */ (function () {
                 _components_login_form_login_form_component__WEBPACK_IMPORTED_MODULE_11__["LoginFormComponent"],
                 _pages_my_info_page_my_info_page_component__WEBPACK_IMPORTED_MODULE_20__["MyInfoPageComponent"],
                 _components_add_order_form_add_order_form_component__WEBPACK_IMPORTED_MODULE_18__["AddOrderFormComponent"],
+                _components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_25__["UpdateOrderFormComponent"],
                 _components_add_movil_form_add_movil_form_component__WEBPACK_IMPORTED_MODULE_24__["AddMovilFormComponent"],
+                _components_update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_25__["UpdateOrderFormComponent"],
                 _components_create_acc_form_create_acc_form_component__WEBPACK_IMPORTED_MODULE_12__["CreateAccFormComponent"],
                 _components_acc_form_acc_form_component__WEBPACK_IMPORTED_MODULE_19__["AccFormComponent"],
                 _components_orders_table_orders_table_component__WEBPACK_IMPORTED_MODULE_17__["OrdersTableComponent"],
@@ -3567,10 +3688,10 @@ module.exports = webpackAsyncContext;
 /*!*********************************!*\
   !*** ./src/assets/i18n/es.json ***!
   \*********************************/
-/*! exports provided: companyName, ordenesTitle, orderTitle, orderFormHint, loginError, loginBtn, addOrderBtn, addUserBtn, addMovilBtn, addBtn, cancelBtn, alreadyHaveAccBtn, createAccBtn, createAccFormBtn, createAccMsg, alreadyHaveAccMsg, notHaveOrdersMsg, createAccError, form, form-error, admin, order, orders-table, users-table, moviles-table, user-menu, acc-form, default */
+/*! exports provided: companyName, ordenesTitle, orderTitle, orderFormHint, loginError, loginBtn, addOrderBtn, addUserBtn, addMovilBtn, addBtn, cancelBtn, updateBtn, alreadyHaveAccBtn, createAccBtn, createAccFormBtn, createAccMsg, alreadyHaveAccMsg, notHaveOrdersMsg, orderInfoHint, createAccError, form, form-error, admin, order, orders-table, users-table, moviles-table, user-menu, acc-form, default */
 /***/ (function(module) {
 
-module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","prefixInput":"Prefijo Archivo","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
+module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","updateBtn":"Actualizar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","orderInfoHint":"Actualizar orden","createAccError":"Ha habido un error, intente mas tarde","form":{"userInput":"Usuario","orderIdInput":"Orden Id","prefixInput":"Prefijo Archivo","statusInput":"Estado","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","orderIdInputError":"Orden Id es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","editOrder":"Actualizar orden","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
 
 /***/ }),
 

@@ -23,6 +23,7 @@ import {HomeAdminPageComponent} from './pages/home-admin-page/home-admin-page.co
 import {MovilesTableComponent} from './components/moviles-table/moviles-table.component';
 import {UsersTableComponent} from './components/users-table/users-table.component';
 import {AddMovilFormComponent} from './components/add-movil-form/add-movil-form.component';
+import {UpdateOrderFormComponent} from './components/update-order-form/update-order-form.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import {AddMovilFormComponent} from './components/add-movil-form/add-movil-form.
     AddOrderFormComponent,
     AddMovilFormComponent,
     CreateAccFormComponent,
+    UpdateOrderFormComponent,
     AccFormComponent,
     OrdersTableComponent,
     MovilesTableComponent,
@@ -65,7 +67,9 @@ import {AddMovilFormComponent} from './components/add-movil-form/add-movil-form.
     LoginFormComponent,
     MyInfoPageComponent,
     AddOrderFormComponent,
+    UpdateOrderFormComponent,
     AddMovilFormComponent,
+    UpdateOrderFormComponent,
     CreateAccFormComponent,
     AccFormComponent,
     OrdersTableComponent,
