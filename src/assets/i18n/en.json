@@ -19,6 +19,7 @@
   "createAccError": "Occurs an error, please try again later",
   "orderInfoHint": "Update order",
   "loginError": "Invalid user and/or password",
+  "createList": "Create delivered orders list",
   "admin":{
     "title": "Dashboard",
     "moviles": "Moviles",

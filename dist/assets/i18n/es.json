@@ -19,6 +19,7 @@
   "notHaveOrdersMsg": "No posee ordenes",
   "orderInfoHint": "Actualizar orden",
   "createAccError": "Ha habido un error, intente mas tarde",
+  "createList": "Crear lista de entregadas",
   "form":{
     "userInput": "Usuario",
     "orderIdInput": "Orden Id",

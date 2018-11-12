@@ -6,6 +6,7 @@ import {AddMovilFormComponent} from '../../components/add-movil-form/add-movil-f
 import {Movil} from '../../../core/models/Movil';
 import {User} from '../../../core/models/User';
 import {AccFormComponent} from '../../components/acc-form/acc-form.component';
+import {DeliveryService} from '../../../core/services/delivery/delivery.service';
 
 @Component({
   selector: 'app-home-admin-page',
@@ -19,14 +20,18 @@ export class HomeAdminPageComponent implements OnInit {
   showTable: boolean;
   movil: Movil;
   user: User;
+  message: String;
+  showMsg: boolean;
 
   constructor(public dialog: MatDialog,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              public deliveryService: DeliveryService) {
     this.showTable = true;
   }
 
   ngOnInit() {
     this.movil = new Movil();
+    this.showMsg = false;
   }
 
   openMovilDialog(): void {
@@ -44,6 +49,20 @@ export class HomeAdminPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       sub.unsubscribe();
     });
+  }
+
+  createDeliveredList(): void {
+    this.showMsg = false;
+    this.deliveryService.createDeliveredList().subscribe(
+      data => {
+        this.message = 'Archivo generado y guardado';
+        this.showMsg = true;
+      },
+      error => {
+        this.message = 'Hubo un error';
+        this.showMsg = true;
+      }
+    );
   }
 
   openUserDialog(): void {
