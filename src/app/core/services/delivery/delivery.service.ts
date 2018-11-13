@@ -18,9 +18,11 @@ export class DeliveryService {
     private http: HttpClient
   ) {
     this.deliveryUrl = AppConfig.endpoints.delivery;
+    this.orderFileUrl = AppConfig.endpoints.order;
   }
 
   private deliveryUrl: string ;
+  private orderFileUrl: string;
 
   private static handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -37,6 +39,15 @@ export class DeliveryService {
 
   createDeliveredList(): Observable<any> {
     return this.http.post<any>(this.deliveryUrl, this.httpOptions)
+      .pipe(
+        tap(() => {
+          console.log('Se creo la lista');
+        })
+      );
+  }
+
+  createRoutesFile(): Observable<any> {
+    return this.http.post<any>(this.orderFileUrl, this.httpOptions)
       .pipe(
         tap(() => {
           console.log('Se creo la lista');

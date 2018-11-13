@@ -57,7 +57,9 @@
     "new": "New",
     "onWay": "On way",
     "delivered": "Delivered",
-    "completed": "Completed"
+    "completed": "Completed",
+    "complain": "Yes",
+    "notComplain": "No"
   },
   "orders-table":{
     "orderId":"Orden Id",
@@ -65,7 +67,8 @@
     "deliveredDate": "Delivered date",
     "receiver": "Receiver",
     "address": "Address",
-    "receivedDate": "Received date"
+    "receivedDate": "Received date",
+    "complain": "Complain"
   },
   "users-table":{
     "email":"Email",

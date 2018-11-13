@@ -57,7 +57,9 @@
     "new": "Nuevo",
     "onWay": "En camino",
     "delivered": "Entregado",
-    "completed": "Completado"
+    "completed": "Completado",
+    "complain": "Si",
+    "notComplain": "No"
   },
   "orders-table":{
     "orderId":"Orden Id",
@@ -65,7 +67,8 @@
     "receiver": "Destinatario",
     "address": "Dirección",
     "deliveredDate": "Fecha de entrega",
-    "receivedDate": "Fecha  recibida"
+    "receivedDate": "Fecha  recibida",
+    "complain": "Reclamo"
   },
   "users-table":{
     "email":"Email",

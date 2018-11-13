@@ -31,6 +31,15 @@
       <mat-cell *matCellDef="let orden"> {{orden.cliente.direccion}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="queja">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.complain' | translate }}  </mat-header-cell>
+      <mat-cell *matCellDef="let orden">
+        <mat-chip-list>
+          <mat-chip *ngIf="orden.queja">{{'order.complain' | translate }}</mat-chip>
+          <mat-chip *ngIf="!orden.queja">{{'order.notComplain' | translate }}</mat-chip>
+        </mat-chip-list>
+      </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{'orders-table.status' | translate }}  </mat-header-cell>

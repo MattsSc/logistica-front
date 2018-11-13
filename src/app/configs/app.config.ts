@@ -13,6 +13,7 @@ export const AppConfig: any = {
     user: 'https://logistica-uade-app.herokuapp.com/logistica/user/',
     orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/',
     movil: 'https://logistica-uade-app.herokuapp.com/logistica/movil/',
-    delivery: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/createList'
+    delivery: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/createList',
+    order: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/routes?fileName=ordenes'
   }
 };

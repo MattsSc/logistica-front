@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {fadeInOut} from '../../helpers/utils.helper';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {Order} from '../../../core/models/Order';
 import {AddMovilFormComponent} from '../../components/add-movil-form/add-movil-form.component';
 import {Movil} from '../../../core/models/Movil';
 import {User} from '../../../core/models/User';
@@ -61,6 +60,18 @@ export class HomeAdminPageComponent implements OnInit {
       error => {
         this.message = 'Hubo un error';
         this.showMsg = true;
+      }
+    );
+  }
+
+  createRoutesFile(): void {
+    this.showMsg = false;
+    this.deliveryService.createRoutesFile().subscribe(
+      data => {
+        console.log('');
+      },
+      error => {
+        console.log('');
       }
     );
   }

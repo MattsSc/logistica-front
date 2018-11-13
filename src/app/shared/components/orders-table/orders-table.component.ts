@@ -23,7 +23,7 @@ import {AddOrderFormComponent} from '../add-order-form/add-order-form.component'
 
 export class OrdersTableComponent implements OnInit, OnChanges {
 
-  displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'direccion', 'estado', 'acciones'];
+  displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'direccion', 'queja', 'estado', 'acciones'];
   dataSource:  MatTableDataSource<Order>;
   sortedData: Array<Order>;
   @Input() order: Order;

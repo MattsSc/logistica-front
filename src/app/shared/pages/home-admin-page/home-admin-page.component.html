@@ -1,5 +1,6 @@
 <h1 style="text-align:  center">{{'admin.title' | translate }}</h1>
 <button mat-flat-button color="primary" class="create-list" (click)="createDeliveredList()">{{'createList' | translate }}</button>
+<button mat-flat-button color="primary" class="create-list" (click)="createRoutesFile()">{{'generateRoutes' | translate }}</button>
 <div style="text-align: center" *ngIf="showMsg">{{ message }}</div>
 <div fxLayout="row">
   <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
