@@ -9,6 +9,7 @@ import {AuthService} from '../../../core/services/auth/auth.service';
 import {AccFormComponent} from '../acc-form/acc-form.component';
 import {UpdateOrderFormComponent} from '../update-order-form/update-order-form.component';
 import {MatDialog} from '@angular/material';
+import {DeliveryService} from '../../../core/services/delivery/delivery.service';
 
 @Component({
   selector: 'app-header',
@@ -27,16 +28,19 @@ export class HeaderComponent implements OnInit {
   appConfig: any;
   progressBarMode: string;
   currentLang: string;
+  deliveryUrl: String;
 
   constructor(@Inject(APP_CONFIG) appConfig: any,
               private progressBarService: ProgressBarService,
               private translateService: TranslateService,
               private authService: AuthService,
+              private deliveryService: DeliveryService,
               public dialog: MatDialog) {
     this.appConfig = appConfig;
   }
 
   ngOnInit() {
+    this.deliveryUrl = this.deliveryService.getRoutesUrl();
     this.currentLang = this.translateService.currentLang;
     this.isLoggedIn$ = this.authService.isLoggedIn;
     this.myAcc = {link: '/myAccount', name: _('myAcc')};

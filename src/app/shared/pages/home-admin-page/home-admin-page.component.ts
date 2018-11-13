@@ -64,18 +64,6 @@ export class HomeAdminPageComponent implements OnInit {
     );
   }
 
-  createRoutesFile(): void {
-    this.showMsg = false;
-    this.deliveryService.createRoutesFile().subscribe(
-      data => {
-        console.log('');
-      },
-      error => {
-        console.log('');
-      }
-    );
-  }
-
   openUserDialog(): void {
     const dialogRef = this.dialog.open(AccFormComponent, {
       width: '1200px'

@@ -85,7 +85,8 @@
     "editOrder": "Update order",
     "home": "My orders",
     "admin": "Dashboard",
-    "logout": "Logout"
+    "logout": "Logout",
+    "deliveryRoutes":"Create delivery routes"
   },
   "acc-form":{
     "loginInfoHint": "Login Information",

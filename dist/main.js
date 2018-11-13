@@ -646,7 +646,7 @@ var AppConfig = {
         orders: 'https://logistica-uade-app.herokuapp.com/logistica/order/',
         movil: 'https://logistica-uade-app.herokuapp.com/logistica/movil/',
         delivery: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/createList',
-        order: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/routes?fileName=ordenes'
+        order: 'https://logistica-uade-app.herokuapp.com/logistica/delivery/routes?fileName=ordenes.json'
     }
 };
 
@@ -1092,6 +1092,9 @@ var DeliveryService = /** @class */ (function () {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(result);
         };
     };
+    DeliveryService.prototype.getRoutesUrl = function () {
+        return this.orderFileUrl;
+    };
     DeliveryService.prototype.createDeliveredList = function () {
         return this.http.post(this.deliveryUrl, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
@@ -1099,10 +1102,7 @@ var DeliveryService = /** @class */ (function () {
         }));
     };
     DeliveryService.prototype.createRoutesFile = function () {
-        return this.http.post(this.orderFileUrl, this.httpOptions)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
-            console.log('Se creo la lista');
-        }));
+        return this.http.get(this.orderFileUrl);
     };
     DeliveryService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -1989,7 +1989,7 @@ var CreateAccFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"isLoggedIn$ | async\" class=\"mat-elevation-z6\">\n    <nav>\n        <div fxFlex fxLayout=\"row\" fxLayout.xs=\"column\" fxLayoutAlign=\"center center\">\n          <div fxFlex=\"40\" class=\"header-title\">\n            {{'companyName' | translate }}\n          </div>\n            <div fxFlex class=\"text--right\">\n              <button mat-icon-button [matMenuTriggerFor]=\"matmenu\">\n                <mat-icon>public</mat-icon>\n              </button>\n              <mat-menu #matmenu=\"matMenu\">\n                <button mat-menu-item (click)=\"changeLanguage('en')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        English\n                    </span>\n                </button>\n                <button mat-menu-item (click)=\"changeLanguage('es')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        Español\n                    </span>\n                </button>\n              </mat-menu>\n              <button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\n                <mat-icon>person</mat-icon>\n              </button>\n              <mat-menu #userMenu=\"matMenu\">\n                <a mat-menu-item routerLink=\"{{myAcc.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.information' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{dashboard.link}}\" *ngIf=\"isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.admin' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{home.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.home' | translate}}</span>\n                </a>\n                <button *ngIf=\"isAdmin\" mat-menu-item (click)=\"editOrderStatus()\">\n                  <mat-icon>create</mat-icon>\n                  <span>{{'user-menu.editOrder' | translate}}</span>\n                </button>\n                <button mat-menu-item (click)=\"onLogout()\">\n                  <mat-icon>power_settings_new</mat-icon>\n                  <span>{{'user-menu.logout' | translate}}</span>\n                </button>\n              </mat-menu>\n            </div>\n        </div>\n    </nav>\n    <section class=\"progress-bar\">\n        <mat-progress-bar [color]=\"'primary'\" [mode]=\"progressBarMode\">\n        </mat-progress-bar>\n    </section>\n</header>\n"
+module.exports = "<header *ngIf=\"isLoggedIn$ | async\" class=\"mat-elevation-z6\">\n    <nav>\n        <div fxFlex fxLayout=\"row\" fxLayout.xs=\"column\" fxLayoutAlign=\"center center\">\n          <div fxFlex=\"40\" class=\"header-title\">\n            {{'companyName' | translate }}\n          </div>\n            <div fxFlex class=\"text--right\">\n              <button mat-icon-button [matMenuTriggerFor]=\"matmenu\">\n                <mat-icon>public</mat-icon>\n              </button>\n              <mat-menu #matmenu=\"matMenu\">\n                <button mat-menu-item (click)=\"changeLanguage('en')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        English\n                    </span>\n                </button>\n                <button mat-menu-item (click)=\"changeLanguage('es')\">\n                  <mat-icon>flag</mat-icon>\n                  <span>\n                        Español\n                    </span>\n                </button>\n              </mat-menu>\n              <button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\n                <mat-icon>person</mat-icon>\n              </button>\n              <mat-menu #userMenu=\"matMenu\">\n                <a mat-menu-item routerLink=\"{{myAcc.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.information' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{dashboard.link}}\" *ngIf=\"isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.admin' | translate}}</span>\n                </a>\n                <a mat-menu-item href=\"{{ deliveryUrl }}\" *ngIf=\"isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.deliveryRoutes' | translate}}</span>\n                </a>\n                <a mat-menu-item routerLink=\"{{home.link}}\" *ngIf=\"!isAdmin\">\n                  <mat-icon>library_books</mat-icon>\n                  <span>{{'user-menu.home' | translate}}</span>\n                </a>\n                <button *ngIf=\"isAdmin\" mat-menu-item (click)=\"editOrderStatus()\">\n                  <mat-icon>create</mat-icon>\n                  <span>{{'user-menu.editOrder' | translate}}</span>\n                </button>\n                <button mat-menu-item (click)=\"onLogout()\">\n                  <mat-icon>power_settings_new</mat-icon>\n                  <span>{{'user-menu.logout' | translate}}</span>\n                </button>\n              </mat-menu>\n            </div>\n        </div>\n    </nav>\n    <section class=\"progress-bar\">\n        <mat-progress-bar [color]=\"'primary'\" [mode]=\"progressBarMode\">\n        </mat-progress-bar>\n    </section>\n</header>\n"
 
 /***/ }),
 
@@ -2024,6 +2024,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../core/services/auth/auth.service */ "./src/app/core/services/auth/auth.service.ts");
 /* harmony import */ var _update_order_form_update_order_form_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../update-order-form/update-order-form.component */ "./src/app/shared/components/update-order-form/update-order-form.component.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _core_services_delivery_delivery_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../core/services/delivery/delivery.service */ "./src/app/core/services/delivery/delivery.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2045,17 +2046,20 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(appConfig, progressBarService, translateService, authService, dialog) {
+    function HeaderComponent(appConfig, progressBarService, translateService, authService, deliveryService, dialog) {
         this.progressBarService = progressBarService;
         this.translateService = translateService;
         this.authService = authService;
+        this.deliveryService = deliveryService;
         this.dialog = dialog;
         this.language = 'es';
         this.appConfig = appConfig;
     }
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.deliveryUrl = this.deliveryService.getRoutesUrl();
         this.currentLang = this.translateService.currentLang;
         this.isLoggedIn$ = this.authService.isLoggedIn;
         this.myAcc = { link: '/myAccount', name: Object(_biesbjerg_ngx_translate_extract_dist_utils_utils__WEBPACK_IMPORTED_MODULE_2__["_"])('myAcc') };
@@ -2094,6 +2098,7 @@ var HeaderComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [Object, _core_services_progress_bar_service__WEBPACK_IMPORTED_MODULE_4__["ProgressBarService"],
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateService"],
             _core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"],
+            _core_services_delivery_delivery_service__WEBPACK_IMPORTED_MODULE_9__["DeliveryService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]])
     ], HeaderComponent);
     return HeaderComponent;
@@ -3203,7 +3208,7 @@ var Error404PageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<button mat-flat-button color=\"primary\" class=\"create-list\" (click)=\"createDeliveredList()\">{{'createList' | translate }}</button>\n<button mat-flat-button color=\"primary\" class=\"create-list\" (click)=\"createRoutesFile()\">{{'generateRoutes' | translate }}</button>\n<div style=\"text-align: center\" *ngIf=\"showMsg\">{{ message }}</div>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openMovilDialog()\">{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table [movil]=\"movil\"></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openUserDialog()\">{{'addUserBtn' | translate }}</button>\n    <app-users-table [user]=\"user\"></app-users-table>\n  </div>\n</div>\n"
+module.exports = "<h1 style=\"text-align:  center\">{{'admin.title' | translate }}</h1>\n<button mat-flat-button color=\"primary\" class=\"create-list\" (click)=\"createDeliveredList()\">{{'createList' | translate }}</button>\n<div style=\"text-align: center\" *ngIf=\"showMsg\">{{ message }}</div>\n<div fxLayout=\"row\">\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.moviles' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openMovilDialog()\">{{'addMovilBtn' | translate }}</button>\n    <app-moviles-table [movil]=\"movil\"></app-moviles-table>\n  </div>\n  <div fxFlex=\"50\" fxFlex.gt-sm=\"50\" style=\"margin: 10px\">\n    <h3 style=\"text-align:  center\">{{'admin.users' | translate }}</h3>\n    <button mat-flat-button color=\"primary\" class=\"add-movil\" (click)=\"openUserDialog()\">{{'addUserBtn' | translate }}</button>\n    <app-users-table [user]=\"user\"></app-users-table>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3286,14 +3291,6 @@ var HomeAdminPageComponent = /** @class */ (function () {
         }, function (error) {
             _this.message = 'Hubo un error';
             _this.showMsg = true;
-        });
-    };
-    HomeAdminPageComponent.prototype.createRoutesFile = function () {
-        this.showMsg = false;
-        this.deliveryService.createRoutesFile().subscribe(function (data) {
-            console.log('');
-        }, function (error) {
-            console.log('');
         });
     };
     HomeAdminPageComponent.prototype.openUserDialog = function () {
@@ -3796,7 +3793,7 @@ module.exports = webpackAsyncContext;
 /*! exports provided: companyName, ordenesTitle, orderTitle, orderFormHint, loginError, loginBtn, addOrderBtn, addUserBtn, addMovilBtn, addBtn, cancelBtn, updateBtn, alreadyHaveAccBtn, createAccBtn, createAccFormBtn, createAccMsg, alreadyHaveAccMsg, notHaveOrdersMsg, orderInfoHint, createAccError, createList, form, form-error, admin, order, orders-table, users-table, moviles-table, user-menu, acc-form, default */
 /***/ (function(module) {
 
-module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","updateBtn":"Actualizar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","orderInfoHint":"Actualizar orden","createAccError":"Ha habido un error, intente mas tarde","createList":"Crear lista de entregadas","form":{"userInput":"Usuario","orderIdInput":"Orden Id","prefixInput":"Prefijo Archivo","statusInput":"Estado","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","orderIdInputError":"Orden Id es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado","complain":"Si","notComplain":"No"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida","complain":"Reclamo"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","editOrder":"Actualizar orden","admin":"Dashboard","logout":"Cerrar sesion"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
+module.exports = {"companyName":"Ravo","ordenesTitle":"Tus ordenes","orderTitle":"Orden","orderFormHint":"Quien y donde recibe:","loginError":"Usuario y/o contraseña invalida","loginBtn":"Aceptar","addOrderBtn":"Agregar orden","addUserBtn":"Agregar Usuario","addMovilBtn":"Agregar Movil","addBtn":"Agregar","cancelBtn":"Cancelar","updateBtn":"Actualizar","alreadyHaveAccBtn":"Volver atras","createAccBtn":"Registrate","createAccFormBtn":"Crear cuenta","createAccMsg":"¿No tienes una cuenta?","alreadyHaveAccMsg":"Ya tengo una cuenta","notHaveOrdersMsg":"No posee ordenes","orderInfoHint":"Actualizar orden","createAccError":"Ha habido un error, intente mas tarde","createList":"Crear lista de entregadas","form":{"userInput":"Usuario","orderIdInput":"Orden Id","prefixInput":"Prefijo Archivo","statusInput":"Estado","licenseInput":"Patente","passInput":"Contraseña","emailInput":"E-mail","dniInput":"D.N.I.","addressInput":"Domicilio","cityInput":"Localidad/Ciudad","nameInput":"Nombre","lastnameInput":"Apellido","weightInput":"Peso (Kg.)"},"form-error":{"userInputError":"Usuario es requerido","orderIdInputError":"Orden Id es requerido","licenseInputError":"Patente requerida","passInputError":"Contraseña es requerida","emailInputError":"E-mail es requerido","nameInputError":"El nombre es requerido","lastnameInputError":"El apellido es requerido","dniInputError":"D.N.I. es requerido","addressInputError":"Dirección es requerido","cityInputError":"Localidad es requerido","weightInputError":"El peso es requerido"},"admin":{"title":"Dashboard","moviles":"Moviles","users":"Usuarios"},"order":{"new":"Nuevo","onWay":"En camino","delivered":"Entregado","completed":"Completado","complain":"Si","notComplain":"No"},"orders-table":{"orderId":"Orden Id","status":"Estado","receiver":"Destinatario","address":"Dirección","deliveredDate":"Fecha de entrega","receivedDate":"Fecha  recibida","complain":"Reclamo"},"users-table":{"email":"Email","status":"Estado","prefix":"Prefijo"},"moviles-table":{"id":"Patente","driver":"Conductor","weight":"Peso (Kg.)"},"user-menu":{"information":"Mis datos","home":"Mis ordenes","editOrder":"Actualizar orden","admin":"Dashboard","logout":"Cerrar sesion","deliveryRoutes":"Crear Hoja de ruta"},"acc-form":{"loginInfoHint":"Datos de login","personalInfoHint":"Datos personales"}};
 
 /***/ }),
 

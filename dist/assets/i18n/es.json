@@ -85,7 +85,8 @@
     "home": "Mis ordenes",
     "editOrder": "Actualizar orden",
     "admin": "Dashboard",
-    "logout": "Cerrar sesion"
+    "logout": "Cerrar sesion",
+    "deliveryRoutes":"Crear Hoja de ruta"
   },
   "acc-form":{
     "loginInfoHint": "Datos de login",

@@ -34,6 +34,10 @@
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.admin' | translate}}</span>
                 </a>
+                <a mat-menu-item href="{{ deliveryUrl }}" *ngIf="isAdmin">
+                  <mat-icon>library_books</mat-icon>
+                  <span>{{'user-menu.deliveryRoutes' | translate}}</span>
+                </a>
                 <a mat-menu-item routerLink="{{home.link}}" *ngIf="!isAdmin">
                   <mat-icon>library_books</mat-icon>
                   <span>{{'user-menu.home' | translate}}</span>

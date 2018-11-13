@@ -37,6 +37,10 @@ export class DeliveryService {
     };
   }
 
+  getRoutesUrl(): String {
+    return this.orderFileUrl;
+  }
+
   createDeliveredList(): Observable<any> {
     return this.http.post<any>(this.deliveryUrl, this.httpOptions)
       .pipe(
@@ -47,11 +51,6 @@ export class DeliveryService {
   }
 
   createRoutesFile(): Observable<any> {
-    return this.http.post<any>(this.orderFileUrl, this.httpOptions)
-      .pipe(
-        tap(() => {
-          console.log('Se creo la lista');
-        })
-      );
+    return this.http.get<any>(this.orderFileUrl);
   }
 }
