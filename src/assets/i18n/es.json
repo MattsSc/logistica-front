@@ -73,7 +73,9 @@
   "users-table":{
     "email":"Email",
     "status": "Estado",
-    "prefix": "Prefijo"
+    "prefix": "Prefijo",
+    "active": "Habilitado",
+    "inactive": "Deshabilitado"
   },
   "moviles-table":{
     "id":"Patente",

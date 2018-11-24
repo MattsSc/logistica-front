@@ -14,7 +14,7 @@
 
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{'users-table.status' | translate }}  </mat-header-cell>
-      <mat-cell *matCellDef="let user"> Activo </mat-cell>
+      <mat-cell *matCellDef="let user"> {{user.isActive ? ('users-table.active'  | translate ): ('users-table.inactive' | translate)}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="acciones">

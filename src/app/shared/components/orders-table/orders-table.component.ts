@@ -26,6 +26,8 @@ export class OrdersTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['ordenId', 'destinatario', 'fechaRecibido', 'fechaEntregado', 'direccion', 'queja', 'estado', 'acciones'];
   dataSource:  MatTableDataSource<Order>;
   sortedData: Array<Order>;
+  interval: any;
+  @Input() isAdmin: boolean;
   @Input() order: Order;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -37,7 +39,20 @@ export class OrdersTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.getAllOrders();
+    this.isAdmin = this.isAdmin || false;
+    if (this.isAdmin) {
+      this.getAllOrders();
+    } else {
+      this.getAllOrdersForUser();
+    }
+
+    this.interval = setInterval(() => {
+      if (this.isAdmin) {
+        this.getAllOrders();
+      } else {
+        this.getAllOrdersForUser();
+      }
+    }, 20000);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -129,6 +144,19 @@ export class OrdersTableComponent implements OnInit, OnChanges {
   }
 
   private getAllOrders(): void {
+    this.orderService.getOrders().subscribe(
+      data => {
+        this.dataSource = new MatTableDataSource<Order>(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error => {
+        console.log('ALGO SE CAGO');
+      }
+    );
+  }
+
+  private getAllOrdersForUser(): void {
     this.userService.getOrders().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<Order>(data);

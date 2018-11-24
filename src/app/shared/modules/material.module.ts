@@ -18,7 +18,8 @@ import {
   MatSortModule,
   MatExpansionModule,
   MatPaginatorModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTabsModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -45,7 +46,8 @@ import {FormsModule} from '@angular/forms';
     MatExpansionModule,
     MatPaginatorModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   exports: [
     MatButtonModule,
@@ -68,7 +70,8 @@ import {FormsModule} from '@angular/forms';
     MatExpansionModule,
     MatPaginatorModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
 })
 

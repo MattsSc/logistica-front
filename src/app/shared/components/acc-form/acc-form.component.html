@@ -21,10 +21,18 @@
         </mat-form-field>
       </div>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item style="margin-top: 20px" *ngIf="admin">
       <div class="acc-row">
         <mat-form-field class="acc-input" >
-          <input matInput type="text" placeholder="{{'form.prefixInput' | translate}}" class="acc__input" [(ngModel)]="user.prefix_file" name="prefix"  #prefix="ngModel" *ngIf="admin">
+          <input matInput type="text" placeholder="{{'form.prefixInput' | translate}}" class="acc__input" [(ngModel)]="user.prefix_file" name="prefix"  #prefix="ngModel" >
+        </mat-form-field>
+      </div>
+      <div class="acc-row">
+        <mat-form-field class="acc-input">
+          <mat-select placeholder="{{'form.statusInput' | translate}}"  [(ngModel)]="user.isActive"  name="isActive"  #isActive="ngModel">
+            <mat-option [value]="true">{{'users-table.active' | translate}}</mat-option>
+            <mat-option [value]="false">{{'users-table.inactive' | translate}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
     </mat-list-item>

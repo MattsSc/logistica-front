@@ -57,6 +57,15 @@ h1, h2 {
   text-align: right;
 }
 
+.mat-tab-label-container{
+  padding-left: 40% !important;
+
+  .mat-tab-label {
+    background-color: #424242 !important;
+  }
+}
+
+
 pre {
   background: $light-grey;
   border: 1px solid $grey;

@@ -73,7 +73,9 @@
   "users-table":{
     "email":"Email",
     "status": "Status",
-    "prefix": "Prefix"
+    "prefix": "Prefix",
+    "active": "Active",
+    "inactive": "Disabled"
   },
   "moviles-table":{
     "id":"License plate",

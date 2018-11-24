@@ -1,15 +1,26 @@
 <h1 style="text-align:  center">{{'admin.title' | translate }}</h1>
 <button mat-flat-button color="primary" class="create-list" (click)="createDeliveredList()">{{'createList' | translate }}</button>
 <div style="text-align: center" *ngIf="showMsg">{{ message }}</div>
-<div fxLayout="row">
-  <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
-    <h3 style="text-align:  center">{{'admin.moviles' | translate }}</h3>
-    <button mat-flat-button color="primary" class="add-movil" (click)="openMovilDialog()">{{'addMovilBtn' | translate }}</button>
-    <app-moviles-table [movil]="movil"></app-moviles-table>
-  </div>
-  <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
-    <h3 style="text-align:  center">{{'admin.users' | translate }}</h3>
-    <button mat-flat-button color="primary" class="add-movil" (click)="openUserDialog()">{{'addUserBtn' | translate }}</button>
-    <app-users-table [user]="user"></app-users-table>
-  </div>
-</div>
+<mat-tab-group>
+  <mat-tab label="Moviles & Users">
+    <div fxLayout="row">
+      <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
+      <h3 style="text-align:  center">{{'admin.moviles' | translate }}</h3>
+      <button mat-flat-button color="primary" class="add-movil" (click)="openMovilDialog()">{{'addMovilBtn' | translate }}</button>
+      <app-moviles-table [movil]="movil"></app-moviles-table>
+    </div>
+      <div fxFlex="50" fxFlex.gt-sm="50" style="margin: 10px">
+        <h3 style="text-align:  center">{{'admin.users' | translate }}</h3>
+        <button mat-flat-button color="primary" class="add-movil" (click)="openUserDialog()">{{'addUserBtn' | translate }}</button>
+        <app-users-table [user]="user"></app-users-table>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Orders">
+    <div fxLayout="row">
+      <div fxFlex="100" fxFlex.gt-sm="100" style="margin: 10px">
+        <app-orders-table [isAdmin]="true"></app-orders-table>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
