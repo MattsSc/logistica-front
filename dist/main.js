@@ -3381,7 +3381,7 @@ var HomeAdminPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"row\">\n  <div fxFlex=\"10\" fxFlex.gt-sm=\"5\"></div>\n  <div fxFlex=\"90\" fxFlex.gt-sm=\"90\">\n    <h1 class=\"header__title\">{{'ordenesTitle' | translate}}</h1>\n    <button mat-flat-button color=\"primary\" class=\"add-order\" (click)=\"openDialog()\">{{'addOrderBtn' | translate }}</button>\n    <app-orders-table [order]=\"this.order\"></app-orders-table>\n  </div>\n  <div fxFlex=\"10\" fxFlex.gt-sm=\"5\"></div>\n</div>\n"
+module.exports = "<div fxLayout=\"row\">\n  <div fxFlex=\"10\" fxFlex.gt-sm=\"5\"></div>\n  <div fxFlex=\"90\" fxFlex.gt-sm=\"90\">\n    <h1 class=\"header__title\">{{'ordenesTitle' | translate}}</h1>\n    <button mat-flat-button color=\"primary\" class=\"add-order\" (click)=\"openDialog()\">{{'addOrderBtn' | translate }}</button>\n    <app-orders-table  [isAdmin]=\"false\" ][order]=\"this.order\"></app-orders-table>\n  </div>\n  <div fxFlex=\"10\" fxFlex.gt-sm=\"5\"></div>\n</div>\n"
 
 /***/ }),
 
