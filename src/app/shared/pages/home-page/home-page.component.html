@@ -3,7 +3,7 @@
   <div fxFlex="90" fxFlex.gt-sm="90">
     <h1 class="header__title">{{'ordenesTitle' | translate}}</h1>
     <button mat-flat-button color="primary" class="add-order" (click)="openDialog()">{{'addOrderBtn' | translate }}</button>
-    <app-orders-table  [isAdmin]="false" ][order]="this.order"></app-orders-table>
+    <app-orders-table  [isAdmin]="false" [order]="this.order"></app-orders-table>
   </div>
   <div fxFlex="10" fxFlex.gt-sm="5"></div>
 </div>
